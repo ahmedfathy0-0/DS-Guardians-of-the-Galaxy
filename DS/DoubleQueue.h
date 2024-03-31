@@ -102,10 +102,12 @@ bool DoubleQueue<T>::dequeue(T& frntEntry)
 	NodeWithPrev<T>* nodeToDeletePtr = frontPtr;
 	frntEntry = frontPtr->getItem();
 	frontPtr = frontPtr->getNext();
-	frontPtr->setPrevious(nullptr);
 	// Queue is not empty; remove front
 	if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
 		backPtr = nullptr;
+	else 
+		frontPtr->setPrevious(nullptr);
+
 
 	// Free memory reserved for the dequeued node
 	delete nodeToDeletePtr;
