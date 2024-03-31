@@ -8,24 +8,30 @@ using namespace std;
 int main() {
 	DoubleEndedQueue<int> queue;
 	int x,y ;
-	queue.enqueue(0);
-	queue.enqueue(1);
-	queue.enqueue(2);
-	queue.enqueue(3);
-	queue.enqueue(4);
-	queue.enqueue(5);
-	queue.enqueue(6);
-	queue.dequeue(x);
-	queue.dequeue(x);
-	queue.dequeue(x);
-	queue.dequeue(x);
-	queue.dequeue(x);
-	queue.dequeue(x);
-	queue.dequeue(x);
+	queue.FrontEnqueue(0);
+	queue.FrontEnqueue(1);
+	queue.FrontEnqueue(2);
+	queue.FrontEnqueue(3);
+	queue.FrontEnqueue(4);
+	queue.FrontEnqueue(5);
+	queue.FrontEnqueue(6);
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
+	queue.RearDequeue(x);
+	cout << x << " ";
 	
-    cout<< queue.dequeue(x);
+	
 
-	 cout << x;
-	 queue.peek(x);
-	 cout << x;
+	cout << queue.RearDequeue(x)<< " ";
+	
 }

@@ -6,7 +6,9 @@ template <typename T>
 class DoubleEndedQueue :public DoubleQueue<T> {
 public:
 	DoubleEndedQueue();
-	bool DoubleDequeue( T& frsEntry,  T& lstEntry);
+	bool RearDequeue( T& lstEntry);
+	bool FrontEnqueue(const T& lstEntry);
+
 
 };
 
@@ -16,38 +18,50 @@ inline DoubleEndedQueue<T>::DoubleEndedQueue() : DoubleQueue<T>()
 }
 
 template<typename T>
-inline bool DoubleEndedQueue<T>::DoubleDequeue( T& frsEntry,  T& lstEntry)
+inline bool DoubleEndedQueue<T>::RearDequeue(T& lstEntry)
 {
 	if (this->isEmpty())
 		return false;
 
-	NodeWithPrev<T>* frsnodeToDeletePtr = this->frontPtr;
 	NodeWithPrev<T>* lstnodeToDeletePtr = this->backPtr;
-	if (frsnodeToDeletePtr != lstnodeToDeletePtr) {
-		frsEntry = this->frontPtr->getItem();
 		lstEntry = this->backPtr->getItem();
-		if (this->frontPtr->getNext() == this->backPtr) {
-			this->frontPtr = nullptr;
-			this->backPtr = nullptr;
-		}
-		else {
-			this->frontPtr = this->frontPtr->getNext();
-			this->frontPtr->setPrevious(nullptr);
-			this->backPtr = this->backPtr->getPrevious();
-			this->backPtr->setNext(nullptr);
-		}
-		delete frsnodeToDeletePtr;
-		delete lstnodeToDeletePtr;
-		this->count -= 2;
-	}
-	// Queue is not empty; remove front
-	else {	 // Special case: last node in the queue
-		this->backPtr = nullptr;
-		this->frontPtr = nullptr;
-		delete frsnodeToDeletePtr;
-		this->count -= 1;
-	}
-	// Free memory reserved for the dequeued node
+		this->backPtr = this->backPtr->getPrevious();
+		
 	
+	
+	//Queue is not empty; remove front
+
+	if (lstnodeToDeletePtr == this->frontPtr)	 // Special case: last node in the queue
+	{
+		this->frontPtr = nullptr;
+
+	}
+	else
+		this->backPtr->setNext(nullptr);
+
+
+	// Free memory reserved for the dequeued node
+	delete lstnodeToDeletePtr;
+	this->count--;
 	return true;
+}
+
+template<typename T>
+inline bool DoubleEndedQueue<T>::FrontEnqueue(const T& lstEntry)
+{
+	NodeWithPrev<T>* newNodePtr = new NodeWithPrev<T>(lstEntry);
+	// Insert the new node
+	if (this->isEmpty())//special case if this is the first node to insert
+	{
+		this->backPtr = newNodePtr;
+	}
+	else {
+		newNodePtr->setNext(this->frontPtr);
+		this->frontPtr->setPrevious(newNodePtr);
+		 // The queue was not empty
+	}
+	this->frontPtr = newNodePtr; // New node is the last node now
+	this->count++;
+	return true;
+	
 }
