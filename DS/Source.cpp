@@ -1,17 +1,12 @@
 #include<iostream>
 #include"ArrayStack.h"
-#include"Node.h"
+#include"NodeWithPrev.h"
 #include"StackADT.h"
 
 using namespace std;
 int main() {
-	ArrayStack<int> S;
-	S.push(2);
-	int x;
-	S.pop(x);
-	//S.isEmpty();
-	cout << x;
+	NodeWithPrev<int>* a = NULL;
+	NodeWithPrev<int> b;
 
-
-
+	b.setPrevious(a);
 }

@@ -130,6 +130,7 @@
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeWithPrev.h" />
     <ClInclude Include="priNode.h" />
     <ClInclude Include="priQueue.h" />
     <ClInclude Include="QueueADT.h" />

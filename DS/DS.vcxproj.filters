@@ -36,6 +36,9 @@
     <ClInclude Include="priQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NodeWithPrev.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
