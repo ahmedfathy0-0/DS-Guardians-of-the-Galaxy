@@ -4,7 +4,7 @@
 template <typename T>
 class NodeWithPrev
 {
-private:
+protected:
     T item; // A data item
     NodeWithPrev<T>* next; // Pointer to next node
     NodeWithPrev <T>* previous;// Pointer to previous node

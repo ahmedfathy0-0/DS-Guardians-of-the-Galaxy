@@ -5,10 +5,12 @@
 #include "NodeWithPrev.h"
 #include "QueueADT.h"
 
+using namespace std;
+
 template <typename T>
 class DoubleQueue :public QueueADT<T>
 {
-private:
+public:
 	int count;
 	NodeWithPrev<T>* backPtr;
 	NodeWithPrev<T>* frontPtr;
@@ -34,6 +36,7 @@ DoubleQueue<T>::DoubleQueue()
 	backPtr = nullptr;
 	frontPtr = nullptr;
 	count = 0;
+	
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -135,7 +138,7 @@ bool DoubleQueue<T>::peek(T& frntEntry) const
 ///////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-DoubleQueue<T>::~LinkedQueue()
+DoubleQueue<T>::~DoubleQueue()
 {
 	//Note that the cout statements here is just for learning purpose
 	//They should be normally removed from the destructor
