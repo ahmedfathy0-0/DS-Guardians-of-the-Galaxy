@@ -17,7 +17,7 @@ public:
     T getItem() const;
     NodeWithPrev<T>* getNext() const;
     void setPrevious(NodeWithPrev<T>* previousNodePtr);
-    NodeWithPrev<T>* getPrevioss() const;
+    NodeWithPrev<T>* getPrevious() const;
 }; // end Node
 
 
@@ -75,7 +75,7 @@ void NodeWithPrev<T>::setPrevious(NodeWithPrev<T>* previousNodePtr)
 }
 
 template < typename T>
-NodeWithPrev<T>* NodeWithPrev<T>::getPrevioss() const
+NodeWithPrev<T>* NodeWithPrev<T>::getPrevious() const
 {
     return previous;
 }
