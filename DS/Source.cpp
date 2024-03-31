@@ -14,9 +14,18 @@ int main() {
 	queue.enqueue(3);
 	queue.enqueue(4);
 	queue.enqueue(5);
-	queue.DoubleDequeue(x,y);
-	 
-	 cout << x << y;
+	queue.enqueue(6);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	queue.dequeue(x);
+	
+    cout<< queue.dequeue(x);
+
+	 cout << x;
 	 queue.peek(x);
 	 cout << x;
 }

@@ -104,7 +104,10 @@ bool DoubleQueue<T>::dequeue(T& frntEntry)
 	frontPtr = frontPtr->getNext();
 	// Queue is not empty; remove front
 	if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
+	{
 		backPtr = nullptr;
+	
+	}
 	else 
 		frontPtr->setPrevious(nullptr);
 

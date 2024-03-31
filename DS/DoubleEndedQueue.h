@@ -26,11 +26,16 @@ inline bool DoubleEndedQueue<T>::DoubleDequeue( T& frsEntry,  T& lstEntry)
 	if (frsnodeToDeletePtr != lstnodeToDeletePtr) {
 		frsEntry = this->frontPtr->getItem();
 		lstEntry = this->backPtr->getItem();
-		
-		this->frontPtr = this->frontPtr->getNext();
-		this->frontPtr->setPrevious(nullptr);
-		this->backPtr = this->backPtr->getPrevious();
-		this->backPtr->setNext(nullptr);
+		if (this->frontPtr->getNext() == this->backPtr) {
+			this->frontPtr = nullptr;
+			this->backPtr = nullptr;
+		}
+		else {
+			this->frontPtr = this->frontPtr->getNext();
+			this->frontPtr->setPrevious(nullptr);
+			this->backPtr = this->backPtr->getPrevious();
+			this->backPtr->setNext(nullptr);
+		}
 		delete frsnodeToDeletePtr;
 		delete lstnodeToDeletePtr;
 		this->count -= 2;
@@ -38,6 +43,7 @@ inline bool DoubleEndedQueue<T>::DoubleDequeue( T& frsEntry,  T& lstEntry)
 	// Queue is not empty; remove front
 	else {	 // Special case: last node in the queue
 		this->backPtr = nullptr;
+		this->frontPtr = nullptr;
 		delete frsnodeToDeletePtr;
 		this->count -= 1;
 	}
