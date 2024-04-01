@@ -9,7 +9,11 @@ class EarthArmy : public Army
 
 	LinkedQueue<EarthSoldier> eSoldiersList;
 	ArrayStack<EarthTank> eTanksList;
-	priQueue<EarthGunnery> eGunneryList;
+	priQueue<Unit*> eGunneryList;
+public:
+	void attack(Army* enemy) ;
+	void addUnit(Unit*) ;
+	void removeUnit(Unit*) ;
 
 };
 

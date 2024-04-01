@@ -14,12 +14,12 @@ public:
 
     ~priQueue() {
         T tmp;
-        int p;
+        double p;
         while (dequeue(tmp, p));
     }
 
     //insert the new node in its correct position according to its priority
-    void enqueue(const T& data, int priority) {
+    void enqueue(const T& data, double priority) {
         priNode<T>* newNode = new priNode<T>(data, priority);
 
         if (head == nullptr || priority > head->getPri()) {
@@ -39,7 +39,7 @@ public:
         count++;
     }
 
-    bool dequeue(T& topEntry, int& pri) {
+    bool dequeue(T& topEntry, double& pri) {
         if (isEmpty())
             return false;
 

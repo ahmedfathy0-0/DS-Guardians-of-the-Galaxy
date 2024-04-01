@@ -60,7 +60,7 @@ inline bool DoubleEndedQueue<T>::FrontEnqueue(const T& lstEntry)
 		this->frontPtr->setPrevious(newNodePtr);
 		 // The queue was not empty
 	}
-	this->frontPtr = newNodePtr; // New node is the last node now
+	this->frontPtr = newNodePtr; // New node is the first node now
 	this->count++;
 	return true;
 	

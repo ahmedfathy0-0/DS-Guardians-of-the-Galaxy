@@ -6,7 +6,7 @@ using namespace std;
 
 class Unit
 {
-
+protected:
 	int ID; //unique identifier for each unit
 	string Type; //type of unit
 	int joinTime; //time at which unit joins the battle
@@ -18,7 +18,7 @@ public:
 
 	// Constructors and Destructors
 	Unit();
-	Unit(int, string, int, int, int, int);
+	Unit(int id, string type, int jointime, double health, double power, int attackcapacity);
 	~Unit();
 
 
@@ -32,15 +32,16 @@ public:
 	void setJoinTime(int);
 	int getJoinTime() const;
 
-	void setHealth(int);
-	int getHealth() const;
+	void setHealth(double health);
+	double getHealth() const;
 
-	void setPower(int);
-	int getPower() const;
+	void setPower(double);
+	double getPower() const;
 
 	void setAttackCapacity(int);
 	int getAttackCapacity() const;
-
+	
+	double getPriority() const;//for Gunnery Units
 
 	// Battle Related Functions
 	
