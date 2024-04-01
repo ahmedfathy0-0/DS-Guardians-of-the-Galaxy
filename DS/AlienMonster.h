@@ -3,5 +3,8 @@
 
 class AlienMonster : public Unit
 {
+
+public:
+	void attack(Unit* target) override;
 };
 

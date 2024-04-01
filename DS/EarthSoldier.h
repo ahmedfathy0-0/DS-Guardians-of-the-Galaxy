@@ -3,5 +3,8 @@
 
 class EarthSoldier : public Unit
 {
+
+public:
+	void attack(Unit* target) override;
 };
 

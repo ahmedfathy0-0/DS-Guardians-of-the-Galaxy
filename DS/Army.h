@@ -5,6 +5,7 @@
 #include "DoubleQueue.h"
 #include "LinkedQueue.h"
 #include "priQueue.h"
+#include "Unit.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ public:
 	virtual void removeUnit(Unit*) = 0;
 
 	//other functions
-
+		
 	virtual void printArmy();
 };
 
