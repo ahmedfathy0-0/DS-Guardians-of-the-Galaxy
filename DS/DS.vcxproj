@@ -127,19 +127,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AlienArmy.h" />
+    <ClInclude Include="AlienDrone.h" />
+    <ClInclude Include="AlienMonster.h" />
+    <ClInclude Include="AlienSoldier.h" />
+    <ClInclude Include="Army.h" />
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="DoubleEndedQueue.h" />
     <ClInclude Include="DoubleQueue.h" />
+    <ClInclude Include="EarthArmy.h" />
+    <ClInclude Include="EarthGunnery.h" />
+    <ClInclude Include="EarthSoldier.h" />
+    <ClInclude Include="EarthTank.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeWithPrev.h" />
     <ClInclude Include="priNode.h" />
     <ClInclude Include="priQueue.h" />
     <ClInclude Include="QueueADT.h" />
+    <ClInclude Include="RandGenerator.h" />
     <ClInclude Include="StackADT.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlienArmy.cpp" />
+    <ClCompile Include="AlienDrone.cpp" />
+    <ClCompile Include="AlienMonster.cpp" />
+    <ClCompile Include="AlienSoldier.cpp" />
+    <ClCompile Include="Army.cpp" />
+    <ClCompile Include="EarthArmy.cpp" />
+    <ClCompile Include="EarthGunnery.cpp" />
+    <ClCompile Include="EarthSoldier.cpp" />
+    <ClCompile Include="EarthTank.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="RandGenerator.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

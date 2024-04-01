@@ -1,54 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DataStructures">
+      <UniqueIdentifier>{f3459a1f-6845-4520-8498-2e2938efe703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Armies">
+      <UniqueIdentifier>{51a51f65-38aa-457a-9502-cfa1be838b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Units">
+      <UniqueIdentifier>{ba04c7f2-bf27-4c45-b30e-7378945a4e97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayStack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackADT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QueueADT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="priNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="priQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeWithPrev.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DoubleQueue.h">
-      <Filter>Header Files</Filter>
+      <Filter>DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="DoubleEndedQueue.h">
-      <Filter>Header Files</Filter>
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleQueue.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeWithPrev.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="priNode.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="priQueue.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueADT.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="StackADT.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="RandGenerator.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="AlienArmy.h">
+      <Filter>Armies</Filter>
+    </ClInclude>
+    <ClInclude Include="Army.h">
+      <Filter>Armies</Filter>
+    </ClInclude>
+    <ClInclude Include="EarthArmy.h">
+      <Filter>Armies</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="EarthTank.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="EarthSoldier.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="EarthGunnery.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="AlienMonster.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="AlienSoldier.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="AlienDrone.h">
+      <Filter>Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="RandGenerator.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="AlienArmy.cpp">
+      <Filter>Armies</Filter>
+    </ClCompile>
+    <ClCompile Include="Army.cpp">
+      <Filter>Armies</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthArmy.cpp">
+      <Filter>Armies</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthTank.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthSoldier.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthGunnery.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienMonster.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienSoldier.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienDrone.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
