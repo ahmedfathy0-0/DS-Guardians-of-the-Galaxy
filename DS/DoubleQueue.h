@@ -20,6 +20,8 @@ public:
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
+	int getCount() const { return count; }
+	void print() const;
 	~DoubleQueue();
 };
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -141,6 +143,26 @@ bool DoubleQueue<T>::peek(T& frntEntry) const
 
 }
 ///////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoubleQueue<T>::print() const
+{
+	NodeWithPrev<T>* p = frontPtr;
+
+	cout << "[ ";
+	while (p)
+	{
+		cout << p->getItem();
+		p = p->getNext();
+
+		if (p) {
+			cout << " ,";
+		}
+
+	}
+	cout << " ]";
+	cout << endl;
+}
 
 template <typename T>
 DoubleQueue<T>::~DoubleQueue()

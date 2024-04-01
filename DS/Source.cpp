@@ -15,7 +15,7 @@ int main() {
 	queue.FrontEnqueue(4);
 	queue.FrontEnqueue(5);
 	queue.FrontEnqueue(6);
-	queue.RearDequeue(x);
+	/* queue.RearDequeue(x);
 	cout << x << " ";
 	queue.RearDequeue(x);
 	cout << x << " ";
@@ -30,8 +30,8 @@ int main() {
 	queue.RearDequeue(x);
 	cout << x << " ";
 	
-	
+	*/
 
-	cout << queue.RearDequeue(x)<< " ";
+	queue.print();
 	
 }

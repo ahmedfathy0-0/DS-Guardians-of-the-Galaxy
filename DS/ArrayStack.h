@@ -18,12 +18,14 @@ class ArrayStack : public StackADT<T>
 private:
 	T items[MAX_SIZE];		// Array of stack items
 	int top;                   // Index to top of stack
+	int count;					// Number of items in the stack
 
 public:
 
 	ArrayStack()
 	{
 		top = -1;
+		count = 0;
 	}  // end default constructor
 
 	bool isEmpty() const
@@ -37,6 +39,7 @@ public:
 
 		top++;
 		items[top] = newEntry;
+		count++;
 		return true;
 	}  // end push
 
@@ -46,6 +49,7 @@ public:
 
 		TopEntry = items[top];
 		top--;
+		count--;
 		return true;
 	}  // end pop
 
@@ -56,6 +60,10 @@ public:
 		TopEntry = items[top];
 		return true;
 	}  // end peek
+
+	int getCount() const {
+		return count;
+	}
 
 }; // end ArrayStack
 

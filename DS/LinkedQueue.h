@@ -51,12 +51,15 @@ class LinkedQueue :public QueueADT<T>
 private:
 	Node<T>* backPtr;
 	Node<T>* frontPtr;
+	int count;
 public:
 	LinkedQueue();
 	bool isEmpty() const;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
+	int getCount() const { return count; };
+	void print() const;
 	~LinkedQueue();
 };
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +75,7 @@ LinkedQueue<T>::LinkedQueue()
 {
 	backPtr = nullptr;
 	frontPtr = nullptr;
+	count = 0;
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +113,7 @@ bool LinkedQueue<T>::enqueue(const T& newEntry)
 		backPtr->setNext(newNodePtr); // The queue was not empty
 
 	backPtr = newNodePtr; // New node is the last node now
+	count++;
 	return true;
 } // end enqueue
 
@@ -138,7 +143,7 @@ bool LinkedQueue<T>::dequeue(T& frntEntry)
 
 	// Free memory reserved for the dequeued node
 	delete nodeToDeletePtr;
-
+	count--;
 	return true;
 }
 
@@ -165,6 +170,26 @@ bool LinkedQueue<T>::peek(T& frntEntry) const
 
 }
 ///////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void LinkedQueue<T>::print() const
+{
+	Node<T>* p = frontPtr;
+
+	cout << "[ ";
+	while (p)
+	{
+		cout << p->getItem();
+		p = p->getNext();
+
+		if (p) {
+			cout << " ,";
+		}
+
+	}
+	cout << " ]";
+	cout << endl;
+}
 
 template <typename T>
 LinkedQueue<T>::~LinkedQueue()
