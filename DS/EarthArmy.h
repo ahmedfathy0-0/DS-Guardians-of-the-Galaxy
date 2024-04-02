@@ -7,13 +7,14 @@
 class EarthArmy : public Army
 {
 
-	LinkedQueue<EarthSoldier> eSoldiersList;
-	ArrayStack<EarthTank> eTanksList;
+	LinkedQueue<Unit*> eSoldiersList;
+	ArrayStack<Unit*> eTanksList;
 	priQueue<Unit*> eGunneryList;
 public:
+	EarthArmy(Game* pgame);
 	void attack(Army* enemy) ;
 	void addUnit(Unit*) ;
-	void removeUnit(Unit*) ;
+	Unit* removeUnit(string type) ;
 
 };
 

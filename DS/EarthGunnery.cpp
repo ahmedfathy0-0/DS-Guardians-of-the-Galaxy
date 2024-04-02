@@ -2,6 +2,7 @@
 
 EarthGunnery::EarthGunnery(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "EG", jointime, health, power, attackcapacity)
 {
+
 }
 
 

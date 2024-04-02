@@ -1,4 +1,7 @@
 #include "Unit.h"
+Unit::Unit()
+{
+}
 
 Unit::Unit(int id, string type, int jointime, double health, double power, int attackcapacity)
 {
@@ -8,8 +11,8 @@ Unit::Unit(int id, string type, int jointime, double health, double power, int a
 	Health = health;
 	Power = power;
 	attackCapacity = attackcapacity;
-
-
+	fAtime = 0;
+	DEStime = 0;
 }
 
 void Unit::setID(int id)

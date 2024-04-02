@@ -9,6 +9,7 @@
 #define ARRAY_STACK_
 
 #include "StackADT.h"
+using namespace std;
 
  //Unless spesificed by the stack user, the default size is 100
 template<typename T>
@@ -63,6 +64,18 @@ public:
 
 	int getCount() const {
 		return count;
+	}
+	void print() {
+
+		cout << "[ ";
+		for (int i = 0;i < count;i++) {
+			cout << items[i];
+			if (i != count - 1) {
+				cout << " ," ;
+			}
+		}
+		cout << " ]";
+		cout << endl;
 	}
 
 }; // end ArrayStack

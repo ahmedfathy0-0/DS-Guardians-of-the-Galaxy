@@ -1,8 +1,8 @@
-#pragma once
+#ifndef UNIT_EA
+#define UNIT_EA
 #include <iostream>
 using namespace std;
 #include <string>
-
 
 class Unit
 {
@@ -10,6 +10,8 @@ protected:
 	int ID; //unique identifier for each unit
 	string Type; //type of unit
 	int joinTime; //time at which unit joins the battle
+	int fAtime;   // First Attack time
+	int DEStime;  //Destruction time 
 	double Health;
 	double Power; 
 	int attackCapacity; 
@@ -50,4 +52,5 @@ public:
 	// Other Functions
 	virtual void print(); //print the unit details
 };
+#endif
 

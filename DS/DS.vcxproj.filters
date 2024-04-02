@@ -78,14 +78,13 @@
     <ClInclude Include="AlienDrone.h">
       <Filter>Units</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayOfPointer.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="RandGenerator.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="AlienArmy.cpp">
-      <Filter>Armies</Filter>
-    </ClCompile>
     <ClCompile Include="Army.cpp">
       <Filter>Armies</Filter>
     </ClCompile>
@@ -113,5 +112,9 @@
     <ClCompile Include="AlienDrone.cpp">
       <Filter>Units</Filter>
     </ClCompile>
+    <ClCompile Include="AlienArmy.cpp">
+      <Filter>Armies</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
 </Project>

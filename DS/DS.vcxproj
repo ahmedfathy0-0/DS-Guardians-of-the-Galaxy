@@ -132,6 +132,7 @@
     <ClInclude Include="AlienMonster.h" />
     <ClInclude Include="AlienSoldier.h" />
     <ClInclude Include="Army.h" />
+    <ClInclude Include="ArrayOfPointer.h" />
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="DoubleEndedQueue.h" />
     <ClInclude Include="DoubleQueue.h" />
