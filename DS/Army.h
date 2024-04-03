@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ARMY_H 
+#define ARMY_H
 #include <iostream>
 #include "DoubleEndedQueue.h"
 #include "ArrayStack.h"
@@ -10,6 +11,7 @@
 #include "Game.h"
 using namespace std;
 
+class Game;
 class Army
 {
 protected:
@@ -33,3 +35,4 @@ public:
 	virtual void printArmy();
 };
 
+#endif

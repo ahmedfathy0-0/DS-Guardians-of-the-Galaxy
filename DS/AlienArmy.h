@@ -1,9 +1,12 @@
-#pragma once
+#ifndef ALIEN_ARMY_H 
+#define ALIEN_ARMY_H
 #include "Army.h"
 #include "AlienDrone.h"
 #include "AlienMonster.h"
 #include "AlienSoldier.h"
 
+class Game;
+class Army;
 class AlienArmy : public Army
 {
 
@@ -18,3 +21,4 @@ public:
 	Unit* removeUnit(string type); // index for the monster list and the Unit pointer used if type is Drone
 };
 
+#endif

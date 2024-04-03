@@ -1,9 +1,12 @@
-#pragma once
+#ifndef EARTH_ARMY_H 
+#define EARTH_ARMY_H
 #include "Army.h"
 #include "EarthGunnery.h"
 #include "EarthSoldier.h"
 #include "EarthTank.h"
 
+class Game;
+class Army;
 class EarthArmy : public Army
 {
 
@@ -17,4 +20,4 @@ public:
 	Unit* removeUnit(string type) ;
 
 };
-
+#endif

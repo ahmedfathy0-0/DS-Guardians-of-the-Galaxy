@@ -1,5 +1,5 @@
 #include "AlienSoldier.h"
-AlienSoldier::AlienSoldier(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "EG", jointime, health, power, attackcapacity, pgame)
+AlienSoldier::AlienSoldier(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "EG", jointime, health, power, attackcapacity)
 {
 }
 void AlienSoldier::attack(Unit* target)
