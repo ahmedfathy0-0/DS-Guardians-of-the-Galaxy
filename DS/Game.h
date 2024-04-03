@@ -6,8 +6,7 @@
 #include "AlienArmy.h"
 #include"EarthArmy.h"
 
-class Unit;
-class Army;
+
 class Game
 {
 	Army* alienarmy;

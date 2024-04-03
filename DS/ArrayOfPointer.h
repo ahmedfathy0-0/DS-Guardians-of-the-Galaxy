@@ -41,6 +41,9 @@ public:
 		count--;
 		return true;
 	}  // end Remove
+	int getCount() const{
+		return count;
+	}
 	void print() {
 
 		cout << "[ ";

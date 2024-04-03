@@ -1,4 +1,5 @@
 #include "AlienArmy.h"
+#include "Game.h"
 
 
 AlienArmy::AlienArmy(Game *pgame): Army(pgame)
@@ -58,12 +59,12 @@ void AlienArmy::addUnit(Unit* AlienUnit)
 
 Unit* AlienArmy::removeUnit(string type)
 {
-	int index;
-	Unit* AlienUnit;
+	int index=0;
 	if (type == "AS") {
 		aSoldiersList.dequeue(AlienUnit);
 	}
 	else if (type == "AM") {
+		index = rand() % (aMonstersList.getCount()); //get random monster
 		aMonstersList.Remove(index,AlienUnit);
 	}
 	else if (type == "AD") {

@@ -83,7 +83,7 @@ void RandGenerator::GenerateArmy(string armytype, Army* earth, int ts, int n, in
 
 Unit* RandGenerator::GenerateUnit(int timestep, string type, int r_l_p, int r_h_p, int r_l_h, int r_h_h, int r_l_c, int r_h_c)
 {
-	Unit* Army_unit;
+	Unit* Army_unit=nullptr;
 	int power = r_l_p + rand() % (r_h_p - r_l_p + 1);
 	int health = r_l_h + rand() % (r_h_h - r_l_h + 1);
 	int attack_capacity = r_l_c + rand() % (r_h_c - r_l_c + 1);

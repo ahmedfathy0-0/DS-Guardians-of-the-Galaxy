@@ -1,7 +1,9 @@
 #include "EarthArmy.h"
+#include "Game.h"
 
 EarthArmy::EarthArmy(Game* pgame) : Army(pgame)
 {
+	EarthUnit = nullptr;
 }
 
 void EarthArmy::attack(Army* enemy)
@@ -56,7 +58,7 @@ void EarthArmy::addUnit(Unit* EarthUnit)
 
 Unit* EarthArmy::removeUnit(string type)
 {
-	Unit* EarthUnit;
+	
 	if (type == "ES") {
 		eSoldiersList.dequeue(EarthUnit);
 	}

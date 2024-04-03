@@ -1,18 +1,16 @@
 #ifndef ALIEN_ARMY_H 
 #define ALIEN_ARMY_H
 #include "Army.h"
-#include "AlienDrone.h"
-#include "AlienMonster.h"
-#include "AlienSoldier.h"
 
-class Game;
-class Army;
+
+
 class AlienArmy : public Army
 {
 
 	LinkedQueue<Unit*> aSoldiersList;
 	Array<Unit*> aMonstersList; //for monsters
 	DoubleEndedQueue<Unit*> aDronesList;
+	Unit* AlienUnit;
 	bool flag; //flag used in remove Unit to make it easy to remove drones
 public:
 	AlienArmy(Game *pgame);

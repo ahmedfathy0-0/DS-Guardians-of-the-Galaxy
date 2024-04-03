@@ -1,4 +1,7 @@
-#pragma once
+#ifndef ALIEN_DRONE_H
+#define ALIEN_DRONE_H
+// !ALIEN_DRONE_H
+
 #include "Unit.h"
 
 class AlienDrone : public Unit
@@ -9,3 +12,4 @@ public:
 	void attack(Unit* target) override;
 };
 
+#endif

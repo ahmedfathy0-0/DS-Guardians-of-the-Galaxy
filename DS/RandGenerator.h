@@ -1,10 +1,14 @@
 #ifndef RAND_GEN_H 
 #define RAND_GEN_H
 
-
-
-#include"AlienArmy.h"
-#include"EarthArmy.h"
+#include "EarthGunnery.h"
+#include "EarthSoldier.h"
+#include "EarthTank.h"
+#include "EarthArmy.h"
+#include "AlienArmy.h"
+#include "AlienDrone.h"
+#include "AlienMonster.h"
+#include "AlienSoldier.h"
 class RandGenerator
 {
 	int E_ID;

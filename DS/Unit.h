@@ -4,6 +4,7 @@
 using namespace std;
 #include <string>
 
+class Game;
 class Unit
 {
 protected:

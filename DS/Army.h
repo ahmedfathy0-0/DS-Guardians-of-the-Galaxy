@@ -8,10 +8,11 @@
 #include "priQueue.h"
 #include "ArrayOfPointer.h"
 #include "Unit.h"
-#include "Game.h"
+//#include "Game.h"
 using namespace std;
 
 class Game;
+
 class Army
 {
 protected:
@@ -21,7 +22,7 @@ public:
 
 	// Constructor and Destructor
 	Army(Game * pgame);
-	~Army();
+	~Army() {}
 
 
 	// Battle related functions
@@ -32,7 +33,7 @@ public:
 
 	//other functions
 		
-	virtual void printArmy();
+	virtual void printArmy(){}
 };
 
 #endif
