@@ -3,7 +3,11 @@
 #include"NodeWithPrev.h"
 #include"StackADT.h"
 #include"DoubleEndedQueue.h"
-
+#include "Unit.h"
+std::ostream& operator<<(std::ostream& os, const Unit*& item) {
+	os << item->getID();  // Print the value of the item
+	return os;
+}
 using namespace std;
 int main() {
 	DoubleEndedQueue<int> queue;

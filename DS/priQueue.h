@@ -70,12 +70,12 @@ public:
 
     void print() const
     {
-        Node<T>* p = head;
-
+        priNode<T>* p = head;
+        double x;
         cout << "[ ";
         while (p)
         {
-            cout << p->getItem();
+            cout << p->getItem(x);
             p = p->getNext();
 
             if (p) {

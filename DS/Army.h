@@ -33,7 +33,7 @@ public:
 
 	//other functions
 		
-	virtual void printArmy(){}
+	virtual void printArmy() = 0;
 };
 
 #endif

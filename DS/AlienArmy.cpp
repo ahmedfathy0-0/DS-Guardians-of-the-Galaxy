@@ -79,5 +79,18 @@ Unit* AlienArmy::removeUnit(string type)
 	}
 	return AlienUnit;
 }
+void AlienArmy::printArmy()
+{
+	std::cout << "====================== Alien Army Alive Units ====================== " << endl;
+	std::cout << aSoldiersList.getCount() << " ES ";
+	aSoldiersList.print();
+	std::cout << aMonstersList.getCount() << " ET ";
+	aMonstersList.print();
+	std::cout << aDronesList.getCount() << " EG ";
+	aDronesList.print();
 
+	std::cout << endl;
+
+
+}
 		

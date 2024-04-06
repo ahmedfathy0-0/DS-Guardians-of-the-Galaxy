@@ -41,6 +41,7 @@ public:
 	void AddToKilled(Unit * Dead);
 	void LoadParameters(fstream& input);
 	void GenereteArmy();
+
 };
 #endif
 

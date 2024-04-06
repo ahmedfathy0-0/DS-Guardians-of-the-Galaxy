@@ -72,3 +72,18 @@ Unit* EarthArmy::removeUnit(string type)
 	return EarthUnit;
 
 }
+
+void EarthArmy::printArmy()
+{
+	std::cout << "====================== Earth Army Alive Units ====================== " << endl;
+	std::cout << eSoldiersList.getCount() << " ES ";
+	eSoldiersList.print();
+	std::cout << eTanksList.getCount() << " ET ";
+	eTanksList.print();
+	std::cout << eGunneryList.getCount() << " EG ";
+	eGunneryList.print();
+
+	std::cout << endl;
+
+
+}
