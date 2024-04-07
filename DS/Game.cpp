@@ -18,8 +18,6 @@ Game::Game(fstream& input, Army* e, Army* a)
 	timestep = 0;
 	eartharmy = e;
 	alienarmy = a;
-	alienarmy = new AlienArmy;
-	eartharmy = new EarthArmy;
 	Input = &input;
 }
 

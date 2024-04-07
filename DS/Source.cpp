@@ -39,6 +39,7 @@ int main() {
 		if (randX < 10) {
 			cout << "picked a ES unit and added it again" << endl;
 			pUnit = eArmy->removeUnit("ES");
+
 			if (pUnit) {
 				eArmy->addUnit(pUnit);
 			}
@@ -46,13 +47,14 @@ int main() {
 		}
 
 		else if (randX < 20) {
-			cout << "picked a ES unit and added it to killed list" << endl;
+			cout << "picked a ET unit and added it to killed list" << endl;
 			pUnit = eArmy->removeUnit("ET");
 			if (pUnit) {
 				pGame->AddToKilled(pUnit);
 			}
 		
 		}
+
 
 		else if (randX < 30) {
 			cout << "picked a EG unit and halfed it's health" << endl;
@@ -107,6 +109,9 @@ int main() {
 
 		cout << "Press any key to continue: ";
 		cin >> key;	
+
+		cout << "\n####################################################################################\n" << endl;
+
 	}
 	
 

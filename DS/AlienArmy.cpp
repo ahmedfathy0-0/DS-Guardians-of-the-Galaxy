@@ -64,17 +64,32 @@ Unit* AlienArmy::removeUnit(string type)
 		aSoldiersList.dequeue(AlienUnit);
 	}
 	else if (type == "AM") {
-		index = rand() % (aMonstersList.getCount()); //get random monster
-		aMonstersList.Remove(index,AlienUnit);
+
+		if (aMonstersList.getCount() != 0) {
+			index = rand() % (aMonstersList.getCount()); //get random monster
+			aMonstersList.Remove(index, AlienUnit);
+		}
+
+		else return nullptr;
+		
 	}
+
 	else if (type == "AD") {
+
+		bool res;
+
 		if (flag) {
-			aDronesList.dequeue(AlienUnit);
-			flag = 0;
+			res = aDronesList.dequeue(AlienUnit);
 		}
 		else {
-			aDronesList.RearDequeue(AlienUnit);
-			flag = 1;
+			res = aDronesList.RearDequeue(AlienUnit);
+		}
+
+		if (!res) {
+			AlienUnit = nullptr;
+		}
+		else {
+			flag = !flag;
 		}
 	}
 	return AlienUnit;
