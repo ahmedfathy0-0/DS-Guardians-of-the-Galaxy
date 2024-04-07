@@ -2,12 +2,24 @@
 #include "RandGenerator.h"
 Game::Game()
 {
+	timestep = 0;
+	eartharmy = NULL;
+	alienarmy = NULL;
+}
+Game::Game(Army* e, Army* a)
+{
+	timestep = 0;
+	eartharmy = e;
+	alienarmy = a;
 }
 
-Game::Game(fstream& input)
+Game::Game(fstream& input, Army* e, Army* a)
 {
-	alienarmy = new AlienArmy(this);
-	eartharmy = new EarthArmy(this);
+	timestep = 0;
+	eartharmy = e;
+	alienarmy = a;
+	alienarmy = new AlienArmy;
+	eartharmy = new EarthArmy;
 	Input = &input;
 }
 
@@ -36,6 +48,6 @@ void Game::GenereteArmy()
 	RandGenerator(eartharmy,alienarmy,timestep, N, ES, ET, EG, AS, AM, AD, Prob,
 		R_E_L_P, R_E_H_P, R_E_L_H, R_E_H_H, R_E_L_C, R_E_H_C,
 		R_A_L_P, R_A_H_P, R_A_L_H, R_A_H_H, R_A_L_C, R_A_H_C);
-	
+	timestep++;
 }
 

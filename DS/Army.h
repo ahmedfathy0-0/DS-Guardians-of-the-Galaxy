@@ -16,18 +16,18 @@ class Game;
 class Army
 {
 protected:
-	Game* pGame;
+	//Game* pGame;
 
 public:
 
 	// Constructor and Destructor
-	Army(Game * pgame);
+	Army();
 	~Army() {}
 
 
 	// Battle related functions
 
-	virtual void attack(Army* enemy) = 0;
+	virtual void attack(Army* enemy, Game* pGame) = 0;
 	virtual void addUnit(Unit*) = 0;
 	virtual Unit* removeUnit(string) = 0;
 

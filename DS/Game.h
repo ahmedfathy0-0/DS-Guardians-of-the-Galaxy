@@ -37,7 +37,8 @@ class Game
 
 public:
 	Game();
-	Game(fstream& input);
+	Game(Army* e,Army* a);
+	Game(fstream& input, Army* e, Army* a);
 	void AddToKilled(Unit * Dead);
 	void LoadParameters(fstream& input);
 	void GenereteArmy();

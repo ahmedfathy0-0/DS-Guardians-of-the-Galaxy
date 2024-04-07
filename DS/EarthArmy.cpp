@@ -1,12 +1,11 @@
 #include "EarthArmy.h"
 #include "Game.h"
 
-EarthArmy::EarthArmy(Game* pgame) : Army(pgame)
-{
+EarthArmy::EarthArmy() {
 	EarthUnit = nullptr;
 }
 
-void EarthArmy::attack(Army* enemy)
+void EarthArmy::attack(Army* enemy, Game* pGame)
 {
 	Unit* EarthUnit;
 	Unit* AlienUnit;

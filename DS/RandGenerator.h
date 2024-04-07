@@ -41,9 +41,8 @@ public:
 	RandGenerator(Army* earth,Army* aliens,int ts, int n, int es, int et, int eg, int as, int am, int ad, int prob,
 		int r_E_L_P, int r_E_H_P, int r_E_L_H, int r_E_H_H,int r_E_L_C, int r_E_H_C, 
 		int r_A_L_P, int r_A_H_P, int r_A_L_H, int r_A_H_H, int r_A_L_C, int r_A_H_C);
-	void GenerateArmy(string armytype,Army* earth, int ts, int n, int es, int et, int eg, int prob,
-		int r_L_P, int r_H_P, int r_L_H, int r_H_H, int r_L_C, int r_H_C);
-	Unit* GenerateUnit(int timestep,string type, int r_l_p, int r_h_p, int r_l_h, int r_h_h, int r_l_c, int r_h_c);
+	void GenerateArmy(string armytype, Army* earth);
+	Unit* GenerateUnit(string type, int r_l_p, int r_h_p, int r_l_h, int r_h_h, int r_l_c, int r_h_c);
 };
 
 #endif

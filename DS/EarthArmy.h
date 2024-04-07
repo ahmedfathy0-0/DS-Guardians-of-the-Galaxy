@@ -12,8 +12,8 @@ class EarthArmy : public Army
 	priQueue<Unit*> eGunneryList;
 	Unit* EarthUnit;
 public:
-	EarthArmy(Game* pgame);
-	void attack(Army* enemy) ;
+	EarthArmy();
+	void attack(Army* enemy, Game* pGame);
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;
 	friend std::ostream& operator<<(std::ostream& os, const		Unit*& item);

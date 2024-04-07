@@ -3,39 +3,33 @@
 #include"NodeWithPrev.h"
 #include"StackADT.h"
 #include"DoubleEndedQueue.h"
-#include "Unit.h"
+#include<fstream>
+//#include "Unit.h"
+//#include"Army.h"
+#include"Game.h"
+//#include"AlienArmy.h"
+//#include"EarthArmy.h"
 std::ostream& operator<<(std::ostream& os, const Unit*& item) {
 	os << item->getID();  // Print the value of the item
 	return os;
 }
 using namespace std;
 int main() {
-	DoubleEndedQueue<int> queue;
-	int x,y ;
-	queue.FrontEnqueue(0);
-	queue.FrontEnqueue(1);
-	queue.FrontEnqueue(2);
-	queue.FrontEnqueue(3);
-	queue.FrontEnqueue(4);
-	queue.FrontEnqueue(5);
-	queue.FrontEnqueue(6);
-	/* queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
-	queue.RearDequeue(x);
-	cout << x << " ";
+	fstream InputFile;
+	InputFile.open("Test.txt");
+	Army* Eartharmy = new EarthArmy;
+	Army* Alienarmy = new AlienArmy;
+	Game* pGame = new Game(InputFile, Eartharmy,Alienarmy);
 	
-	*/
 
-	queue.print();
-	
+	if (InputFile.is_open()){
+		pGame->LoadParameters(InputFile);
+		pGame->GenereteArmy();
+	}
+
+
+
+
+
+
 }
