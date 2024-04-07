@@ -52,6 +52,8 @@ public:
 
 	// Other Functions
 	virtual void print(); //print the unit details
+
+	friend std::ostream& operator<<(std::ostream& os, const Unit* item);
 };
 #endif
 
