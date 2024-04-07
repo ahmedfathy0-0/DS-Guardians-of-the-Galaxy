@@ -44,10 +44,25 @@ void Game::LoadParameters(fstream& input)
 
 void Game::GenereteArmy()
 {
+	timestep++;
 	LoadParameters(*Input);
 	RandGenerator(eartharmy,alienarmy,timestep, N, ES, ET, EG, AS, AM, AD, Prob,
 		R_E_L_P, R_E_H_P, R_E_L_H, R_E_H_H, R_E_L_C, R_E_H_C,
 		R_A_L_P, R_A_H_P, R_A_L_H, R_A_H_H, R_A_L_C, R_A_H_C);
-	timestep++;
+}
+
+void Game::print()
+{
+	cout << "Current Time Step: " << timestep << endl;
+
+	eartharmy->printArmy();
+	alienarmy->printArmy();
+
+	std::cout << "====================== Killed / Destructed Units ====================== " << endl;
+	Unit* pUnit = nullptr;
+	KilledList.print();
+
+	cout << endl;
+
 }
 

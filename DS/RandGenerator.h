@@ -11,8 +11,8 @@
 #include "AlienSoldier.h"
 class RandGenerator
 {
-	int E_ID;
-	int A_ID;
+	static int E_ID;
+	static int A_ID;
 	int TS; //current timestep
 	int N;  
 	int ES;

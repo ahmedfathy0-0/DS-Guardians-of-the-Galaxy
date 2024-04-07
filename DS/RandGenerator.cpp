@@ -1,10 +1,12 @@
 #include "RandGenerator.h"
 
 
+int RandGenerator::E_ID = 0;
+int RandGenerator::A_ID = 2000;
+
 RandGenerator::RandGenerator(Army* earth, Army* aliens,int ts, int n, int es, int et, int eg, int as, int am, int ad, int prob, int r_E_L_P, int r_E_H_P, int r_E_L_H, int r_E_H_H, int r_E_L_C, int r_E_H_C, int r_A_L_P, int r_A_H_P, int r_A_L_H, int r_A_H_H, int r_A_L_C, int r_A_H_C)
 {
-	E_ID = 0;
-	A_ID = 2000;
+
 	alienarmy = aliens;
 	eartharmy = earth;
 	TS = ts;

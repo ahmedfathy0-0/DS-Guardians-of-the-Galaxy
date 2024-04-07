@@ -1,5 +1,5 @@
 #include "AlienDrone.h"
-AlienDrone::AlienDrone(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "EG", jointime, health, power, attackcapacity)
+AlienDrone::AlienDrone(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "AD", jointime, health, power, attackcapacity)
 {
 }
 void AlienDrone::attack(Unit* target)
