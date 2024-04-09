@@ -17,19 +17,23 @@ std::ostream& operator<<(std::ostream& os, const Unit* item) {
 using namespace std;
 
 int main() {
+	// Open the input file
 	fstream InputFile;
 	InputFile.open("Test.txt");
+	if (!InputFile.is_open()) {
+		cerr << "Error: Could not open file 'Test.txt'." << endl;
+		return 1; // Exit program on error
+	}
+	// Create armies and game object
 	Army* eArmy = new EarthArmy;
 	Army* aArmy = new AlienArmy;
 	Game* pGame = new Game(InputFile, eArmy,aArmy);
 	Unit* pUnit;
-
 	string key;
-
 	for (int i = 1; i <= 50; i++) {
 
 		srand(time(0));
-
+		// Generate army if file is open
 		if (InputFile.is_open()) {
 			pGame->GenereteArmy();
 		}
@@ -37,7 +41,7 @@ int main() {
 		int randX = 1 + (rand() % 100);
 
 		if (randX < 10) {
-			cout << "picked a ES unit and added it again" << endl;
+			cout << "Picked an ES unit and added it back." << endl;
 			pUnit = eArmy->removeUnit("ES");
 
 			if (pUnit) {
@@ -47,7 +51,7 @@ int main() {
 		}
 
 		else if (randX < 20) {
-			cout << "picked a ET unit and added it to killed list" << endl;
+			cout << "Picked an ET unit and added it to killed list." << endl;
 			pUnit = eArmy->removeUnit("ET");
 			if (pUnit) {
 				pGame->AddToKilled(pUnit);
@@ -57,7 +61,7 @@ int main() {
 
 
 		else if (randX < 30) {
-			cout << "picked a EG unit and halfed it's health" << endl;
+			cout << "Picked an EG unit and halved its health." << endl;
 			pUnit = eArmy->removeUnit("EG");
 			if (pUnit) {
 				double health = pUnit->getHealth();
@@ -68,23 +72,28 @@ int main() {
 		}
 
 		else if (randX < 40) {
-			cout << "picked a AS unit list and halfed it's health" << endl;
+			cout << "Picked 5 AS units and halved their health." << endl;
 			double health;
 			LinkedQueue<Unit*>* pQueue = new LinkedQueue<Unit*>;
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; ++i) {
 				pUnit = aArmy->removeUnit("AS");
 				if (pUnit) {
 					health = pUnit->getHealth();
 					pUnit->setHealth(health / 2);
 					pQueue->enqueue(pUnit);
-					aArmy->addUnit(pUnit);
 				}
 			}
+			// Add units back to the army after processing
+			while (!pQueue->isEmpty()) {
+				pQueue->dequeue(pUnit);
+				aArmy->addUnit(pUnit);
+			}
+			delete pQueue;  // Deallocate memory after use
 			
 		}
 
 		else if (randX < 50) {
-			cout << "picked a AM unit list and added it again" << endl;
+			cout << "Picked 5 AM units and added them back." << endl;
 			for (int i = 0; i < 5; i++) {
 				pUnit = aArmy->removeUnit("AM");
 				if (pUnit) {
@@ -95,7 +104,7 @@ int main() {
 		}
 
 		else if (randX < 60) {
-			cout << "picked a AD unit list and added it to killed list" << endl;
+			cout << "Picked 6 AD units and added them to killed list." << endl;
 			for (int i = 0; i < 6; i++) {
 				pUnit = aArmy->removeUnit("AD");
 				if (pUnit) {
@@ -105,14 +114,24 @@ int main() {
 			
 		}
 
+		// Print game state
 		pGame->print();
 
+		// Wait for  input
 		cout << "Press any key to continue: ";
-		cin >> key;	
+		string key;
+		cin >> key;
 
+		// Separator line
 		cout << "\n####################################################################################\n" << endl;
-
 	}
-	
+
+	// Deallocate memory 
+	delete eArmy;
+	delete aArmy;
+	delete pGame;
+
+	// Close the input file
+	InputFile.close();
 
 }

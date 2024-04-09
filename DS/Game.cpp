@@ -56,8 +56,9 @@ void Game::print()
 	eartharmy->printArmy();
 	alienarmy->printArmy();
 
-	std::cout << "====================== Killed / Destructed Units ====================== " << endl;
+	std::cout << "====================== Killed / Destructed Units ===================== " << endl;
 	Unit* pUnit = nullptr;
+	std::cout << KilledList.getCount() <<" ";
 	KilledList.print();
 
 	cout << endl;
