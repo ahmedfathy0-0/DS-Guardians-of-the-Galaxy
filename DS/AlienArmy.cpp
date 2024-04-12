@@ -61,13 +61,17 @@ Unit* AlienArmy::removeUnit(string type)
 {
 	int index=0;
 	if (type == "AS") {
-		aSoldiersList.dequeue(AlienUnit);
+		if (!aSoldiersList.dequeue(AlienUnit)) {
+			AlienUnit = nullptr;
+		}
 	}
 	else if (type == "AM") {
 
 		if (aMonstersList.getCount() != 0) {
 			index = rand() % (aMonstersList.getCount()); //get random monster
-			aMonstersList.Remove(index, AlienUnit);
+			if (!aMonstersList.Remove(index, AlienUnit)) {
+				AlienUnit = nullptr;
+			}
 		}
 
 		else return nullptr;

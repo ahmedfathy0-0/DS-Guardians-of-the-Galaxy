@@ -59,19 +59,22 @@ Unit* EarthArmy::removeUnit(string type)
 {
 	
 	if (type == "ES") {
-		eSoldiersList.dequeue(EarthUnit);
+		if (!eSoldiersList.dequeue(EarthUnit)) {
+			EarthUnit = nullptr;
+		}
 	}
 	else if (type == "ET") {
-		bool res = eTanksList.pop(EarthUnit);
-
-		if (!res) {
+		if (!eTanksList.pop(EarthUnit)) {
 			EarthUnit = nullptr;
 		}
 		
 	}
 	else if (type == "EG") {
 		double  pri;
-		eGunneryList.dequeue(EarthUnit,pri);
+		if (!eGunneryList.dequeue(EarthUnit, pri)) {
+			EarthUnit= nullptr;
+		}
+
 	}
 	return EarthUnit;
 
