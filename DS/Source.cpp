@@ -20,9 +20,8 @@ using namespace std;
 int main() {
 	string key;
 	cout << "\033[1;36mBefore starting the test code,\nwe need to make sure that u know we clear the screen after \neach iteration to make the output more clear and easy to read.\n Don't worry every information u need to know will be displayed \033[0m" << endl;
-	cout << "\033[1;32mPress any key to start the test code.\033[0m" << endl; /// we tried to make the text bold too but we failed:(
+	cout << "\033[1;32mPress any key to start the test code.\033[0m" << endl; 
 	cin >> key;
-	// Test the ArrayStack class
 	// Open the input file
 	fstream InputFile;
 	InputFile.open("Test.txt");
@@ -38,11 +37,10 @@ int main() {
 	for (int i = 1; i <= 50; i++) {
 		system("cls");  // Clear the screen
 		// Print game state
-		cout << i << " iterations: " << "Game state before generate units "<< endl;
+		cout <<"\033[1;31m" << i << " iterations: \033[0m" << "\033[1;36mGame state before generate units \033[0m" << endl;
 		pGame->print();
 		// Separator line
 		cout << "\n######################################################################################\n";
-		cout << "\n######################################################################################\n" << endl;
 
 
 
@@ -52,14 +50,14 @@ int main() {
 			pGame->GenereteArmy();
 		}
 		// Print game state
-		cout<< "Game state after generate units" << endl;
+		cout<< "\033[1;36mGame state after generate units\033[0m" << endl;
 		pGame->print();
 		// Separator line
 		cout << "\n######################################################################################\n";
-		cout << "\n######################################################################################\n" << endl;
 
 		int randX = 1 + (rand() % 100);
-
+		// Print game state
+		cout << "\033[1;36mGame state after processing units\033[0m" << endl;
 		if (randX < 10) {
 			cout << "Picked an ES unit and added it back." << endl;
 			pUnit = eArmy->removeUnit("ES");
@@ -138,12 +136,10 @@ int main() {
 			cout << "No operation performed" << endl;
 		}
 		
-		// Print game state
-		cout << "Game state after processing units" << endl;
+		
 		pGame->print();
 		// Separator line
 		cout << "\n######################################################################################\n";
-		cout << "\n######################################################################################\n" << endl;
 
 		// Wait for  input
 		cout << "Press any key to continue: ";
