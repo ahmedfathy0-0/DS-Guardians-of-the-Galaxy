@@ -2,7 +2,7 @@
 #include "Game.h"
 
 
-AlienArmy::AlienArmy()
+AlienArmy::AlienArmy(Game* pGame)
 {
 	flag = 1; // so first remove for drones will remove the last one 
 }
@@ -46,13 +46,13 @@ void AlienArmy::attack(Army* enemy, Game* pGame)
 
 void AlienArmy::addUnit(Unit* AlienUnit)
 {
-	if (AlienUnit->getType() == "AS") {
+	if (dynamic_cast<AlienSoldier*>(AlienUnit)) {
 		aSoldiersList.enqueue(AlienUnit);
 	}
-	else if (AlienUnit->getType() == "AM") {
+	else if (dynamic_cast<AlienMonster*>(AlienUnit)) {
 		aMonstersList.AddElement(AlienUnit);
 	}
-	else if (AlienUnit->getType() == "AD") {
+	else if (dynamic_cast<AlienDrone*>(AlienUnit)) {
 		aDronesList.enqueue(AlienUnit);
 	}
 }

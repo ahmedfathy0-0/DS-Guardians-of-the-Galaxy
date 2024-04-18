@@ -12,7 +12,7 @@ class EarthArmy : public Army
 	priQueue<Unit*> eGunneryList;
 	Unit* EarthUnit;
 public:
-	EarthArmy();
+	EarthArmy(Game* pGame);
 	void attack(Army* enemy, Game* pGame);
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;

@@ -4,55 +4,36 @@
 int RandGenerator::E_ID = 0;
 int RandGenerator::A_ID = 2000;
 
-RandGenerator::RandGenerator(Army* earth, Army* aliens,int ts, int n, int es, int et, int eg, int as, int am, int ad, int prob, int r_E_L_P, int r_E_H_P, int r_E_L_H, int r_E_H_H, int r_E_L_C, int r_E_H_C, int r_A_L_P, int r_A_H_P, int r_A_L_H, int r_A_H_H, int r_A_L_C, int r_A_H_C)
+RandGenerator::RandGenerator(Game* game,int ts)
 {
-
-	alienarmy = aliens;
-	eartharmy = earth;
 	TS = ts;
-	N = n;
-	ES = es;
-	ET = et;
-	EG = eg;
-	AS = as;
-	AM = am;
-	AD = ad;
-	Prob = prob;
-	R_E_L_P = r_E_L_P;
-	R_E_H_P = r_E_H_P;
-	R_E_L_H = r_E_L_H;
-	R_E_H_H = r_E_H_H;
-	R_E_L_C = r_E_L_C;
-	R_E_H_C = r_E_H_C;
-	R_A_L_P = r_A_L_P;
-	R_A_H_P = r_A_H_P;
-	R_A_L_H = r_A_L_H;
-	R_A_H_H = r_A_H_H;
-	R_A_L_C = r_A_L_C;
-	R_A_H_C = r_A_H_C;
 
-	GenerateArmy("Earth", earth);
-	GenerateArmy("Alien", aliens);
+	pGame = game;
+
 }
 
-void RandGenerator::GenerateArmy(string armytype, Army* earth)
+void RandGenerator::GenerateArmy(string armytype)
 {
+
+	Army* eartharmy = pGame->getEarthArmy();
+	Army* alienarmy = pGame->getAlienArmy();
+
 	if (armytype == "Earth") {
 		Unit* Earth_unit;
 		for (int i = 0; i < N; i++) {
 			int A = 1 + (rand() % 100);
-			if (A <= Prob) {
+			if (A <= prob) {
 				int B = 1 + (rand() % 100);
-				if (B <= ES) {
-					Earth_unit = GenerateUnit("ES", R_E_L_P, R_E_H_P, R_E_L_H, R_E_H_H, R_E_L_C, R_E_H_C);
+				if (B <= percentage[0]) {
+					Earth_unit = GenerateUnit("ES", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
 					eartharmy->addUnit(Earth_unit);
 				}
-				else if (B <= (ES + ET)) {
-					Earth_unit = GenerateUnit("ET", R_E_L_P, R_E_H_P, R_E_L_H, R_E_H_H, R_E_L_C, R_E_H_C);
+				else if (B <= (percentage[0] + percentage[1])) {
+					Earth_unit = GenerateUnit("ET", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
 					eartharmy->addUnit(Earth_unit);
 				}
 				else {
-					Earth_unit = GenerateUnit("EG", R_E_L_P, R_E_H_P, R_E_L_H, R_E_H_H, R_E_L_C, R_E_H_C);
+					Earth_unit = GenerateUnit("EG", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
 					eartharmy->addUnit(Earth_unit);
 				}
 
@@ -63,18 +44,18 @@ void RandGenerator::GenerateArmy(string armytype, Army* earth)
 		Unit* Alien_unit;
 		for (int i = 0; i < N; i++) {
 			int A = 1 + (rand() % 100);
-			if (A <= Prob) {
+			if (A <= prob) {
 				int B = 1 + (rand() % 100);
-				if (B <= AS) {
-					Alien_unit = GenerateUnit("AS", R_A_L_P, R_A_H_P, R_A_L_H, R_A_H_H, R_A_L_C, R_A_H_C);
+				if (B <= percentage[3]) {
+					Alien_unit = GenerateUnit("AS", ranges[6], ranges[7], ranges[8], ranges[9], ranges[10], ranges[11]);
 					alienarmy->addUnit(Alien_unit);
 				}
-				else if (B <= (AS + AM)) {
-					Alien_unit = GenerateUnit("AM", R_A_L_P, R_A_H_P, R_A_L_H, R_A_H_H, R_A_L_C, R_A_H_C);
+				else if (B <= (percentage[3] + percentage[4])) {
+					Alien_unit = GenerateUnit("AM", ranges[6], ranges[7], ranges[8], ranges[9], ranges[10], ranges[11]);
 					alienarmy->addUnit(Alien_unit);
 				}
 				else {
-					Alien_unit = GenerateUnit("AD", R_A_L_P, R_A_H_P, R_A_L_H, R_A_H_H, R_A_L_C, R_A_H_C);
+					Alien_unit = GenerateUnit("AD", ranges[6], ranges[7], ranges[8], ranges[9], ranges[10], ranges[11]);
 					alienarmy->addUnit(Alien_unit);
 				}
 
@@ -114,4 +95,32 @@ Unit* RandGenerator::GenerateUnit(string type, int r_l_p, int r_h_p, int r_l_h, 
 		Army_unit = new AlienDrone(A_ID++, TS, health, power, attack_capacity);
 	}
 	return Army_unit;
+}
+
+void RandGenerator::setN(int n)
+{
+	N = n;
+}
+
+void RandGenerator::setPer(int ES, int ET, int EG, int AS, int AM, int AD)
+{
+	percentage[0] = ES, percentage[1] = ET, percentage[2] = EG; // Earth Setters
+	percentage[3] = AS, percentage[4] = AM, percentage[5] = AD; // Alien Setters
+
+}
+
+void RandGenerator::setRange(int R_E_L_P, int R_E_H_P, int R_E_L_H, int R_E_H_H, int R_E_L_C, int R_E_H_C, int R_A_L_P, int R_A_H_P, int R_A_L_H, int R_A_H_H, int R_A_L_C, int R_A_H_C)
+{
+	ranges[0] = R_E_L_P, ranges[1] = R_E_H_P, ranges[2] = R_E_L_H, ranges[3] = R_E_H_H, ranges[4] = R_E_L_C, ranges[5] = R_E_H_C; //Earth Ranges
+	ranges[6] = R_A_L_P, ranges[7] = R_A_H_P, ranges[8] = R_A_L_H, ranges[9] = R_A_H_H, ranges[10] = R_A_L_C, ranges[11] = R_A_H_C; // Alien Ranges
+
+}
+
+void RandGenerator::setProb(int p)
+{
+	prob = p;
+}
+
+RandGenerator::~RandGenerator()
+{
 }

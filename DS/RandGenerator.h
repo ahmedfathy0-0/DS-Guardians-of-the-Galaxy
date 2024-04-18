@@ -9,40 +9,31 @@
 #include "AlienDrone.h"
 #include "AlienMonster.h"
 #include "AlienSoldier.h"
+#include "Game.h"
 class RandGenerator
 {
 	static int E_ID;
 	static int A_ID;
 	int TS; //current timestep
 	int N;  
-	int ES;
-	int ET;
-	int EG;
-	int AS;
-	int AM;
-	int AD;
-	int Prob;
-	int R_E_L_P;
-	int R_E_H_P;
-	int R_E_L_H;
-	int R_E_H_H;
-	int R_E_L_C;
-	int R_E_H_C;
-	int R_A_L_P;
-	int R_A_H_P;
-	int R_A_L_H;
-	int R_A_H_H;
-	int R_A_L_C;
-	int R_A_H_C;
-	Army* alienarmy;
-	Army* eartharmy;
+	int prob;
+	int percentage[6]; // 0-ES, 1-ET, 2-EG, 3-AS, 4-AM, 5-AD
+	int ranges[12]; // 0-R_E_L_P 1-R_E_H_P 2-R_E_L_H 3-R_E_H_H 4-R_E_L_C 5-R_E_H_C 6-R_A_L_P 7-R_A_H_P 8-R_A_L_H 9-R_A_H_H 10-R_A_L_C 11-R_A_H_C
+	Game* pGame;
 
 public:
-	RandGenerator(Army* earth,Army* aliens,int ts, int n, int es, int et, int eg, int as, int am, int ad, int prob,
-		int r_E_L_P, int r_E_H_P, int r_E_L_H, int r_E_H_H,int r_E_L_C, int r_E_H_C, 
-		int r_A_L_P, int r_A_H_P, int r_A_L_H, int r_A_H_H, int r_A_L_C, int r_A_H_C);
-	void GenerateArmy(string armytype, Army* earth);
+	RandGenerator(Game* pGame, int ts);
+	void GenerateArmy(string armytype);
 	Unit* GenerateUnit(string type, int r_l_p, int r_h_p, int r_l_h, int r_h_h, int r_l_c, int r_h_c);
+
+	void setN(int n);
+	void setPer(int ES, int ET, int EG, int AS, int AM, int AD);
+	void setRange(int R_E_L_P, int R_E_H_P, int R_E_L_H, int R_E_H_H, int R_E_L_C, int R_E_H_C, int R_A_L_P, int R_A_H_P, int R_A_L_H, int R_A_H_H, int R_A_L_C, int R_A_H_C);
+	void setProb(int prob);
+
+	~RandGenerator();
+
+
 };
 
 #endif

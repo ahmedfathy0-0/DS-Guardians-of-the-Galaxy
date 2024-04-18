@@ -1,7 +1,7 @@
 #include "EarthArmy.h"
 #include "Game.h"
 
-EarthArmy::EarthArmy() {
+EarthArmy::EarthArmy(Game* pGame) {
 	EarthUnit = nullptr;
 }
 
@@ -44,13 +44,13 @@ void EarthArmy::attack(Army* enemy, Game* pGame)
 
 void EarthArmy::addUnit(Unit* EarthUnit)
 {
-	if (EarthUnit->getType() == "ES") {
+	if (dynamic_cast<EarthSoldier*>(EarthUnit)) {
 		eSoldiersList.enqueue(EarthUnit);
 	}
-	else if (EarthUnit->getType() == "ET") {
+	else if (dynamic_cast<EarthTank*>(EarthUnit)) {
 		eTanksList.push(EarthUnit);
 	}
-	else if (EarthUnit->getType() == "EG") {
+	else if (dynamic_cast<EarthGunnery*>(EarthUnit)) {
 		eGunneryList.enqueue(EarthUnit,EarthUnit->getPower());
 	}
 }
