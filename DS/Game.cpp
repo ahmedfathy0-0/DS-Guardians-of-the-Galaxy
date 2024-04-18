@@ -82,5 +82,14 @@ void Game::print()
 
 Game::~Game()
 {
+	if (!eartharmy)
+		delete eartharmy;
+	
+	if (!alienarmy)
+		delete alienarmy;
+
+	if (!pRandGen)
+		delete pRandGen;
+
 }
 

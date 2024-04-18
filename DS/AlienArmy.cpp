@@ -2,12 +2,12 @@
 #include "Game.h"
 
 
-AlienArmy::AlienArmy(Game* pGame)
+AlienArmy::AlienArmy(Game* pGame): Army(pGame)
 {
 	flag = 1; // so first remove for drones will remove the last one 
 }
 
-void AlienArmy::attack(Army* enemy, Game* pGame)
+void AlienArmy::attack(Army* enemy)
 {
 	Unit* EarthUnit;
 	Unit* AlienUnit;

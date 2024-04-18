@@ -1,6 +1,6 @@
 #include "Army.h"
 
-Army::Army()
+Army::Army(Game* p)
 {
-	
+    pGame = p;
 }

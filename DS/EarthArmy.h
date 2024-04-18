@@ -13,7 +13,7 @@ class EarthArmy : public Army
 	Unit* EarthUnit;
 public:
 	EarthArmy(Game* pGame);
-	void attack(Army* enemy, Game* pGame);
+	void attack(Army* enemy);
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;
 	//friend std::ostream& operator<<(std::ostream& os, const		Unit*& item);
