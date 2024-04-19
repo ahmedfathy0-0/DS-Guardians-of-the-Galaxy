@@ -70,10 +70,10 @@ int Unit::getAttackCapacity() const
 	return attackCapacity;
 }
 
-//double Unit::getPriority() const
-//{
-//	return 0.4 * Health + 0.6 * Power;   // means i give 40% of importance to Health and 60% to power
-//}
+double Unit::getPriority() const
+{
+	return 0.4 * Health + 0.6 * Power;   // means i give 40% of importance to Health and 60% to power
+}
 
 void Unit::print()
 {

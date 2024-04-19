@@ -51,7 +51,7 @@ void EarthArmy::addUnit(Unit* EarthUnit)
 		eTanksList.push(EarthUnit);
 	}
 	else if (dynamic_cast<EarthGunnery*>(EarthUnit)) {
-		eGunneryList.enqueue(EarthUnit,EarthUnit->getPower());
+		eGunneryList.enqueue(EarthUnit,EarthUnit->getPriority());  // pls check the priority function
 	}
 }
 
