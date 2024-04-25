@@ -16,7 +16,6 @@ public:
 	void attack(Army* enemy);
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;
-	//friend std::ostream& operator<<(std::ostream& os, const		Unit*& item);
 	void printArmy();
 
 };

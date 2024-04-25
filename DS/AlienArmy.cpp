@@ -29,18 +29,9 @@ void AlienArmy::attack(Army* enemy)
 				pGame->AddToKilled(EarthUnit);
 			}
 			else {
-				SoldierTemp.enqueue(EarthUnit);
+				enemy->addUnit(EarthUnit);
 			}
 		}
-		/*Now we need to return the alive soldiers to thier previous place again  */
-		for (int i = 0;;i++) {
-			EarthUnit = enemy->removeUnit("AS");
-			SoldierTemp.enqueue(EarthUnit);
-		}
-		for (int i = 0; SoldierTemp.dequeue(EarthUnit);i++) {
-			enemy->addUnit(EarthUnit);
-		} // now every alive unit return thier places
-
 	}
 }
 
