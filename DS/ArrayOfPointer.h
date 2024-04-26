@@ -28,8 +28,10 @@ public:
 		count++;
 		return true;
 	}  // end AddElement
-	bool Remove(int index,T& TopEntry)
+	bool Remove(T& TopEntry)
 	{
+		int index = rand() % (count);
+
 		if (isEmpty()) return false;
 		for (int i = 0;i < count;i++) {
 			if (i == index) {

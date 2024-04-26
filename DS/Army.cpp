@@ -4,3 +4,4 @@ Army::Army(Game* p)
 {
     pGame = p;
 }
+

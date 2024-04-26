@@ -30,6 +30,7 @@ public:
 	virtual void attack(Army* enemy) = 0;
 	virtual void addUnit(Unit*) = 0;
 	virtual Unit* removeUnit(string) = 0;
+	virtual int getSoldiersCount() = 0;
 
 	//other functions
 		

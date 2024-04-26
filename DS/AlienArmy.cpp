@@ -33,6 +33,45 @@ void AlienArmy::attack(Army* enemy)
 			}
 		}
 	}
+
+	/*Here Alien Monster Will attack both tanks and Earth Soldiers Depend on its attack capacity*/
+
+	if (!aMonstersList.isEmpty()) {
+
+		aMonstersList.Remove(AlienUnit);
+
+		LinkedQueue<Unit*> enemyTemp;
+
+		int tankCapacity = AlienUnit->getAttackCapacity() / 2;
+		int soldierCapacity = AlienUnit->getAttackCapacity() - tankCapacity;
+
+		for (int i = 0; i < AlienUnit->getAttackCapacity(); i++) {
+
+			if (enemyTemp.getCount() < tankCapacity) {
+				EarthUnit = enemy->removeUnit("ET");
+				enemyTemp.enqueue(EarthUnit);
+			}
+			else {
+				EarthUnit = enemy->removeUnit("ES");
+				enemyTemp.enqueue(EarthUnit);
+			}
+		}
+
+		for (int i = 0; i < AlienUnit->getAttackCapacity(); i++) {
+			enemyTemp.dequeue(EarthUnit);
+			AlienUnit->attack(EarthUnit);
+			if (EarthUnit->getHealth() <= 0)
+			{
+				pGame->AddToKilled(EarthUnit);
+			}
+			else {
+				enemy->addUnit(EarthUnit);
+			}
+		}
+
+		aMonstersList.AddElement(AlienUnit);
+
+	}
 }
 
 void AlienArmy::addUnit(Unit* AlienUnit)
@@ -50,7 +89,6 @@ void AlienArmy::addUnit(Unit* AlienUnit)
 
 Unit* AlienArmy::removeUnit(string type)
 {
-	int index=0;
 	if (type == "AS") {
 		if (!aSoldiersList.dequeue(AlienUnit)) {
 			AlienUnit = nullptr;
@@ -59,8 +97,7 @@ Unit* AlienArmy::removeUnit(string type)
 	else if (type == "AM") {
 
 		if (aMonstersList.getCount() != 0) {
-			index = rand() % (aMonstersList.getCount()); //get random monster
-			if (!aMonstersList.Remove(index, AlienUnit)) {
+			if (!aMonstersList.Remove(AlienUnit)) {
 				AlienUnit = nullptr;
 			}
 		}
@@ -88,6 +125,10 @@ Unit* AlienArmy::removeUnit(string type)
 		}
 	}
 	return AlienUnit;
+}
+int AlienArmy::getSoldiersCount()
+{
+	return aSoldiersList.getCount();
 }
 void AlienArmy::printArmy()
 {

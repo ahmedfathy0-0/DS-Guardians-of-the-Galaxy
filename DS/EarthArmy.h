@@ -16,6 +16,7 @@ public:
 	void attack(Army* enemy);
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;
+	int getSoldiersCount();
 	void printArmy();
 
 };
