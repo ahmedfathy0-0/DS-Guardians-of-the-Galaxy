@@ -16,7 +16,8 @@ protected:
 	double Health;
 	double Power; 
 	int attackCapacity; 
-
+	int UMLJoinTime; //time at which unit joins the UML
+	double originalHealth; // used for tanks and soldiers
 public:
 
 	// Constructors and Destructors
@@ -30,10 +31,16 @@ public:
 	void setID(int);
 	int getID() const;
 
+	void setfatime(int);
+	int getfatime() const;
+
 	string getType() const;
 
 	void setJoinTime(int);
 	int getJoinTime() const;
+
+	void setDEStime(int);
+	int getDEStime() const;
 
 	void setHealth(double health);
 	double getHealth() const;
@@ -45,6 +52,11 @@ public:
 	int getAttackCapacity() const;
 	
 	double getPriority() const;//for Gunnery Units
+
+	void setUMLJoinTime(int);
+	int getUMLJoinTime() const;
+
+	double getOriginalHealth() const;
 
 	// Battle Related Functions
 	

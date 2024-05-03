@@ -81,6 +81,9 @@
     <ClInclude Include="ArrayOfPointer.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="healUnit.h">
+      <Filter>Units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
@@ -116,5 +119,8 @@
       <Filter>Armies</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="healUnit.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

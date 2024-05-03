@@ -3,6 +3,7 @@
 
 EarthTank::EarthTank(int id, int jointime, double health, double power, int attackcapacity) :Unit(id, "ET", jointime, health, power, attackcapacity)
 {
+	originalHealth = health;
 }
 void EarthTank::attack(Unit* target)
 {

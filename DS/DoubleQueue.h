@@ -116,6 +116,7 @@ bool DoubleQueue<T>::dequeue(T& frntEntry)
 
 	// Free memory reserved for the dequeued node
 	delete nodeToDeletePtr;
+	nodeToDeletePtr = nullptr;
 	count--;
 	return true;
 }
@@ -137,7 +138,7 @@ bool DoubleQueue<T>::peek(T& frntEntry) const
 {
 	if (isEmpty())
 		return false;
-
+	
 	frntEntry = frontPtr->getItem();
 	return true;
 

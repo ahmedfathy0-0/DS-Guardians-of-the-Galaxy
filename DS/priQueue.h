@@ -51,11 +51,11 @@ public:
         return true;
     }
 
-    bool peek(T& topEntry, int& pri) {
+    bool peek(T& topEntry, double& pri) {
         if (isEmpty())
             return false;
 
-        topEntry = head->getItem();
+        topEntry = head->getItem(pri);
         pri = head->getPri();
         return true;
     }

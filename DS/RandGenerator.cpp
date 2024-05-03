@@ -4,16 +4,19 @@
 int RandGenerator::E_ID = 0;
 int RandGenerator::A_ID = 2000;
 
-RandGenerator::RandGenerator(Game* game,int ts)
+RandGenerator::RandGenerator(Game* game)
 {
-	TS = ts;
+	
 
 	pGame = game;
 
 }
 
-void RandGenerator::GenerateArmy(string armytype)
+void RandGenerator::GenerateArmy(string armytype,int ts)
 {
+	TS = ts;
+
+	srand(time(0));
 
 	Army* eartharmy = pGame->getEarthArmy();
 	Army* alienarmy = pGame->getAlienArmy();
@@ -25,10 +28,14 @@ void RandGenerator::GenerateArmy(string armytype)
 			if (A <= prob) {
 				int B = 1 + (rand() % 100);
 				if (B <= percentage[0]) {
-					Earth_unit = GenerateUnit("ES", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
+					Earth_unit = GenerateUnit("HU", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
 					eartharmy->addUnit(Earth_unit);
 				}
 				else if (B <= (percentage[0] + percentage[1])) {
+					Earth_unit = GenerateUnit("ES", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
+					eartharmy->addUnit(Earth_unit);
+				}
+				else if(B <= (percentage[0] + percentage[1] + percentage[2])) {
 					Earth_unit = GenerateUnit("ET", ranges[0], ranges[1], ranges[2], ranges[3], ranges[4], ranges[5]);
 					eartharmy->addUnit(Earth_unit);
 				}
@@ -46,11 +53,11 @@ void RandGenerator::GenerateArmy(string armytype)
 			int A = 1 + (rand() % 100);
 			if (A <= prob) {
 				int B = 1 + (rand() % 100);
-				if (B <= percentage[3]) {
+				if (B <= percentage[4]) {
 					Alien_unit = GenerateUnit("AS", ranges[6], ranges[7], ranges[8], ranges[9], ranges[10], ranges[11]);
 					alienarmy->addUnit(Alien_unit);
 				}
-				else if (B <= (percentage[3] + percentage[4])) {
+				else if (B <= (percentage[4] + percentage[5])) {
 					Alien_unit = GenerateUnit("AM", ranges[6], ranges[7], ranges[8], ranges[9], ranges[10], ranges[11]);
 					alienarmy->addUnit(Alien_unit);
 				}
@@ -71,7 +78,10 @@ Unit* RandGenerator::GenerateUnit(string type, int r_l_p, int r_h_p, int r_l_h, 
 	int health = r_l_h + rand() % (r_h_h - r_l_h + 1);
 	int attack_capacity = r_l_c + rand() % (r_h_c - r_l_c + 1);
 
-	if (type == "ES") {
+	if (type == "HU") {
+		//Army_unit = new HealingUnit(E_ID++, TS, health, power, attack_capacity);
+	}
+	else if (type == "ES") {
 		Army_unit = new EarthSoldier(E_ID++, TS, health, power, attack_capacity);
 	}
 	else if (type == "ET")
@@ -102,10 +112,11 @@ void RandGenerator::setN(int n)
 	N = n;
 }
 
-void RandGenerator::setPer(int ES, int ET, int EG, int AS, int AM, int AD)
+void RandGenerator::setPer(int HU, int ES, int ET, int EG, int AS, int AM, int AD)
 {
-	percentage[0] = ES, percentage[1] = ET, percentage[2] = EG; // Earth Setters
-	percentage[3] = AS, percentage[4] = AM, percentage[5] = AD; // Alien Setters
+	percentage[0] = HU;  // HU setter
+	percentage[1] = ES, percentage[2] = ET, percentage[3] = EG; // Earth Setters
+	percentage[4] = AS, percentage[5] = AM, percentage[6] = AD; // Alien Setters
 
 }
 

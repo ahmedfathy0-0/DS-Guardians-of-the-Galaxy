@@ -27,7 +27,7 @@ public:
 
 	// Battle related functions
 
-	virtual void attack(Army* enemy) = 0;
+	virtual void attack(Army* enemy,int timestep) = 0;
 	virtual void addUnit(Unit*) = 0;
 	virtual Unit* removeUnit(string) = 0;
 	virtual int getSoldiersCount() = 0;
@@ -35,6 +35,9 @@ public:
 	//other functions
 		
 	virtual void printArmy() = 0;
+	virtual void printFightingUnits() = 0;
+	virtual void Armyfile(fstream&,int,int,int,int,int) = 0;
+
 };
 
 #endif
