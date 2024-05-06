@@ -4,7 +4,6 @@
 #include "DoubleEndedQueue.h"
 #include "ArrayStack.h"
 #include "DoubleQueue.h"
-#include "LinkedQueue.h"
 #include "priQueue.h"
 #include "ArrayOfPointer.h"
 #include "Unit.h"

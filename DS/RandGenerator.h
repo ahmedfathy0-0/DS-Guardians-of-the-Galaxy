@@ -10,7 +10,9 @@
 #include "AlienDrone.h"
 #include "AlienMonster.h"
 #include "AlienSoldier.h"
-#include "Game.h"
+
+
+
 class RandGenerator
 {
 	static int E_ID;
@@ -20,10 +22,11 @@ class RandGenerator
 	int prob;
 	int percentage[7]; // 0-HU, 1-ES, 2-ET, 3-EG, 4-AS, 5-AM, 6-AD
 	int ranges[12]; // 0-R_E_L_P 1-R_E_H_P 2-R_E_L_H 3-R_E_H_H 4-R_E_L_C 5-R_E_H_C 6-R_A_L_P 7-R_A_H_P 8-R_A_L_H 9-R_A_H_H 10-R_A_L_C 11-R_A_H_C
-	Game* pGame;
-
+	Army * eartharmy;
+	Army * alienarmy;
 public:
-	RandGenerator(Game* pGame);
+	RandGenerator(Army *,Army*);
+
 	void GenerateArmy(string armytype, int ts);
 	Unit* GenerateUnit(string type, int r_l_p, int r_h_p, int r_l_h, int r_h_h, int r_l_c, int r_h_c);
 

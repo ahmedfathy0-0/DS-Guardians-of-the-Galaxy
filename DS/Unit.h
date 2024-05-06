@@ -4,7 +4,10 @@
 using namespace std;
 #include <string>
 
+#include "LinkedQueue.h"
+
 class Game;
+class Army;
 class Unit
 {
 protected:
@@ -60,7 +63,7 @@ public:
 
 	// Battle Related Functions
 	
-	virtual void attack( Unit* ) = 0; //attack another unit
+	virtual void attack( LinkedQueue <Unit *>* SoldierTemp, int timestep , Game * pGame , Army *enemy ) = 0; //attack another unit
 
 	// Other Functions
 	virtual void print(); //print the unit details

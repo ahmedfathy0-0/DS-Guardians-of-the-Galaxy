@@ -5,6 +5,6 @@ class EarthGunnery : public Unit
 
 public:
 	EarthGunnery(int id, int jointime, double health, double power, int attackcapacity);
-	void attack(Unit* target) override;
+	void attack(LinkedQueue <Unit*>* SoldierTemp, int timestep, Game* pGame, Army* enemy) override;
 };
 

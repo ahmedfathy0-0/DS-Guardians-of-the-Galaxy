@@ -4,6 +4,12 @@
 
 EarthArmy::EarthArmy(Game* pGame): Army(pGame) {
 	EarthUnit = nullptr;
+	ES_Attack = nullptr;
+	ET_Attack = nullptr;
+	EG_Attack = nullptr;
+	ES_attacking_list = nullptr;
+	ET_attacking_list = nullptr;
+	EG_attacking_list = nullptr;
 }
 
 void EarthArmy::attack(Army* enemy , int timestep)
@@ -35,25 +41,8 @@ void EarthArmy::attack(Army* enemy , int timestep)
 			ES_attacking_list->enqueue(AlienUnit);
 		}
 		/* then we will start to attack them */
+        EarthUnit->attack(&SoldierTemp, timestep, pGame, enemy);
 
-		int loopCount = SoldierTemp.getCount();
-
-		for (int i = 0; i < loopCount; i++) {
-			SoldierTemp.dequeue(AlienUnit);
-
-			if (!AlienUnit) break;
-
-			AlienUnit->setfatime(timestep);
-
-			EarthUnit->attack(AlienUnit);
-			if (AlienUnit->getHealth() <= 0)  // after attack i have to check is the soldier dead or not 
-			{
-				pGame->AddToKilled(AlienUnit);
-			}
-			else {
-				enemy->addUnit(AlienUnit);
-			}
-		}
 	}
 
 	/*Here Earth Tank Will attack Alien Monsters and maybe Soldiers Depend on its attack capacity*/
@@ -106,27 +95,12 @@ void EarthArmy::attack(Army* enemy , int timestep)
 			}
             int loopCount=enemyTemp.getCount();
 
-			for (int i = 0; i < loopCount; i++) {
-				enemyTemp.dequeue(AlienUnit);
-
-				if (!AlienUnit) break;
-
-				AlienUnit->setfatime(timestep);
-				EarthUnit->attack(AlienUnit);
-
-				if (AlienUnit->getHealth() <= 0)
-				{
-					pGame->AddToKilled(AlienUnit);
-				}
-				else {
-					enemy->addUnit(AlienUnit);
-				}
-
-			}
+			EarthUnit->attack(&enemyTemp, timestep, pGame, enemy);
 
 		}
 
 		else {
+
 
 
 			for (int i = 0; i < EarthUnit->getAttackCapacity(); i++) {
@@ -138,27 +112,61 @@ void EarthArmy::attack(Army* enemy , int timestep)
 				ET_attacking_list->enqueue(AlienUnit);
 			}
 
-			int loopCount = enemyTemp.getCount();
+			EarthUnit->attack(&enemyTemp, timestep, pGame, enemy);
+			
+		}
+	}
 
-			for (int i = 0; i < loopCount; i++) {
 
-				enemyTemp.dequeue(AlienUnit);
+	/*Here Earth gunnery Will attack Alien monsters and drones Depend on its attack capacity*/
+	if (!eGunneryList.isEmpty()) {
+		double pri = 0.0;
+		eGunneryList.peek(EarthUnit, pri);
 
-				if (!AlienUnit) break;
+		EG_Attack = EarthUnit; // for printing
 
-				AlienUnit->setfatime(timestep);
+		LinkedQueue<Unit*> enemytemp;
+		
+		int attackCapacity = EarthUnit->getAttackCapacity();
+		int monstersAttacked = EarthUnit->getAttackCapacity() / 2;
+		int dronesAttacked = EarthUnit->getAttackCapacity() - monstersAttacked;
 
-				EarthUnit->attack(AlienUnit);
-
-				if (AlienUnit->getHealth() <= 0)  // after attack i have to check is the Monster dead or not 
-				{
-					pGame->AddToKilled(AlienUnit);
+		bool isMonsterEmpty = false;
+		for (int i = 0; i < EarthUnit->getAttackCapacity(); i++) {
+			
+			if (i < monstersAttacked) {
+				AlienUnit = enemy->removeUnit("AM");
+				if (AlienUnit == nullptr) {
+					monstersAttacked = 0;
+					dronesAttacked = EarthUnit->getAttackCapacity() - i;
+					isMonsterEmpty = true;
 				}
 				else {
-					enemy->addUnit(AlienUnit);
+					enemytemp.enqueue(AlienUnit);
+					EG_attacking_list->enqueue(AlienUnit);
+				}
+
+			}
+			else {
+				AlienUnit = enemy->removeUnit("AD");
+
+				if (AlienUnit == nullptr) {
+					if (!isMonsterEmpty) {
+						monstersAttacked = EarthUnit->getAttackCapacity() - i;
+						dronesAttacked = 0;
+					}
+					else {
+						break;
+					}
+
+				}
+				else {
+					enemytemp.enqueue(AlienUnit);
+					EG_attacking_list->enqueue(AlienUnit);
 				}
 			}
 		}
+         EarthUnit->attack(&enemytemp, timestep, pGame, enemy);
 	}
 
 
@@ -301,6 +309,176 @@ void EarthArmy::printArmy()
     
 
 
+}
+
+void EarthArmy::modifyUML(int timeStep)
+{
+	Unit* temp;
+	ArrayStack<Unit*> tempStack;
+	int loop1 = eSoldiersList.getCount();
+	int loop2 = eTanksList.getCount();
+
+	for (int i = 0; i < loop1; i++) {
+		eSoldiersList.dequeue(temp);
+
+		if (temp) {
+			if (temp->getHealth() > 0 && temp->getHealth() < 0.2 * temp->getOriginalHealth()) {
+				soldiersUML.enqueue(temp, INT_MAX - temp->getHealth());
+				temp->setUMLJoinTime(timeStep);
+			}
+
+			else eSoldiersList.enqueue(temp);
+		}
+
+		
+	}
+
+	for (int i = 0; i < loop2; i++) {
+
+
+		if (eTanksList.pop(temp)) {
+			if (temp->getHealth() > 0 && temp->getHealth() < 0.2 * temp->getOriginalHealth()) {
+				tankUML.enqueue(temp);
+				temp->setUMLJoinTime(timeStep);
+			}
+			else
+				tempStack.push(temp);
+		}
+		temp = nullptr;
+
+		for (int i = 0; i < loop2; i++) {
+			if (tempStack.pop(temp))
+				eTanksList.push(temp);
+		}
+	}
+
+}
+
+void EarthArmy::Heal(int timeStep)
+{
+	Unit* EarthUnit;
+
+	/*Here Earth healUnit Will heal Earth Soldiers and tanks Depend on its attack capacity*/
+	if (!healList.isEmpty()) {
+		healList.pop(EarthUnit);
+		LinkedQueue<Unit*> tempList;
+		Unit* unitToHeal;
+		double tempHealth;
+		int healCapacity = EarthUnit->getAttackCapacity();
+
+
+		if (EarthUnit) {
+			for (int i = 0; i < healCapacity; i++) {
+
+				if (!soldiersUML.isEmpty()) {
+					soldiersUML.dequeue(unitToHeal, tempHealth);
+				}
+
+				else if (!tankUML.isEmpty()) {
+					tankUML.dequeue(unitToHeal);
+				}
+
+				else {
+					healList.push(EarthUnit);
+					break;
+				}
+
+				if (timeStep - unitToHeal->getUMLJoinTime() > 10) {
+					pGame->AddToKilled(unitToHeal);
+				}
+
+				else {
+					//EarthUnit->attack(unitToHeal);
+
+					if (unitToHeal->getHealth() > 0.2 * unitToHeal->getOriginalHealth()) {
+						this->addUnit(unitToHeal);
+					}
+
+					else {
+						tempList.enqueue(unitToHeal);
+					}
+
+				}
+
+			}
+
+			for (int i = 0; i < tempList.getCount(); i++) {
+
+				if (tempList.dequeue(unitToHeal)) {
+					if (dynamic_cast<EarthSoldier*>(unitToHeal)) {
+						soldiersUML.enqueue(unitToHeal, unitToHeal->getHealth());
+					}
+
+					else if (dynamic_cast<EarthTank*>(unitToHeal)) {
+						tankUML.enqueue(unitToHeal);
+					}
+				}
+			
+			}
+
+			pGame->AddToKilled(EarthUnit);
+
+		}
+
+	}
+}
+
+void EarthArmy::printFightingUnits()
+{
+	if (ES_Attack && !ES_attacking_list->isEmpty()) {
+		std::cout << "ES " << ES_Attack->getID() << " Shots ";
+		ES_attacking_list->print();
+	}
+
+	if (ET_Attack && !ET_attacking_list->isEmpty()) {
+		std::cout << "ET " << ET_Attack->getID() << " Shots ";
+		ET_attacking_list->print();
+	}
+	
+	if (EG_Attack && !EG_attacking_list->isEmpty()) {
+		std::cout << "EG " << EG_Attack->getID() << " Shots ";
+		EG_attacking_list->print();
+	}
+
+	delete ES_attacking_list;
+	delete ET_attacking_list;
+	delete EG_attacking_list;
+	ES_attacking_list = nullptr;
+	ET_attacking_list = nullptr;
+	EG_attacking_list = nullptr;
+
+
+}
+
+void EarthArmy::Armyfile(fstream& Output, int ES_dead, int ET_dead, int EG_dead, int Df, int Dd)
+{
+	Output << std::fixed << std::setprecision(2);
+	Output << eSoldiersList.getCount() << " ES " << "  " << eTanksList.getCount() << " ET " << "  " << eGunneryList.getCount() << " EG" << endl;
+	Output << endl;
+	Output << (double(ES_dead) / (eSoldiersList.getCount() + ES_dead)) * 100 << " %(Dead_ES) " << (double(ET_dead) / (eTanksList.getCount() + ET_dead)) * 100 << " %(Dead_ET) " << (double(EG_dead) / (eGunneryList.getCount() + EG_dead)) * 100 << " %(Dead_EG)" << endl;
+	Output << endl;
+	Output << (double(ES_dead + ET_dead + EG_dead) / (eSoldiersList.getCount() + eTanksList.getCount() + eGunneryList.getCount() + ES_dead + ET_dead + EG_dead)) * 100 << " %(Dead_EarthUnits)" << endl;
+	Output << endl;
+	int sum = ES_dead + ET_dead + EG_dead;
+	if (sum != 0) {
+		double Df_avg = (double(Df) / (sum));
+		double Dd_avg = (double(Dd) / (sum));
+		double Db_avg = (double(Df + Dd) / (sum));
+		Output << "average of Df = " << Df_avg << endl;
+		Output << "average of Dd = " << Dd_avg << endl;
+		Output << "average of Db = " << Db_avg << endl;
+		Output << endl;
+		Output << "Df/Db % = " << (double(Df_avg) / Db_avg) * 100 << endl;
+		Output << "Dd/Db % = " << (double(Dd_avg) / Db_avg) * 100 << endl;
+	}
+	else {
+		Output << "average of Df = 0 %" << endl;
+		Output << "average of Dd = 0 %" << endl;
+		Output << "average of Db = 0 %" << endl;
+		Output << endl;
+		Output << "Df/Db % = 0" << endl;
+		Output << "Dd/Db % = 0" << endl;
+	}
 }
 
 void EarthArmy::modifyUML(int timeStep)

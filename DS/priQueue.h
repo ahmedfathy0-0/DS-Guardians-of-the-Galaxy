@@ -10,7 +10,9 @@ class priQueue
     priNode<T>* head;
     int count;
 public:
-    priQueue() : head(nullptr) {}
+    priQueue() : head(nullptr) {
+    count = 0;
+    }
 
     ~priQueue() {
         T tmp;

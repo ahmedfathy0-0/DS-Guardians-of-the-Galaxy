@@ -6,23 +6,24 @@ Game::Game()
 	eartharmy = NULL;
 	alienarmy = NULL;
 	Input = NULL;
-	pRandGen = new RandGenerator(this);
+	pRandGen = new RandGenerator(nullptr,nullptr);
 	Output.open("output.txt", ios::out);
-if (!Output.is_open()) {
-    std::cerr << "Failed to open output.txt for writing.\n";
-} else {
-    Output << "Td" << "    " << "ID" << "    " << "Tj" << "    " << "Df" << "    " << "Dd" << "    " << "Db" << endl;
-}
-ES_dead = 0;
-ET_dead = 0;
-EG_dead = 0;
-AS_dead = 0;
-AM_dead = 0;
-AD_dead = 0;
-A_Dd = 0;
-A_Df = 0;
-E_Dd = 0;
-E_Df = 0;
+        if (!Output.is_open()) {
+		  std::cerr << "Failed to open output.txt for writing.\n";
+		} else {
+		  Output << "Td" << "    " << "ID" << "    " << "Tj" << "    " << "Df" << "    " << "Dd" << "    " << "Db" << endl;
+		}
+		ES_dead = 0;
+		ET_dead = 0;
+		EG_dead = 0;
+		AS_dead = 0;
+		AM_dead = 0;
+		AD_dead = 0;
+		A_Dd = 0;
+		A_Df = 0;
+		E_Dd = 0;
+		E_Df = 0;
+
 
 }
 
@@ -31,7 +32,8 @@ Game::Game(fstream& input)
 	timestep = 0;
 	eartharmy = new EarthArmy(this);
 	alienarmy = new AlienArmy(this);
-	pRandGen = new RandGenerator(this);
+	pRandGen = new RandGenerator(eartharmy,alienarmy);
+
 	Input = &input;
 	Output.open("output.txt", ios::out);
 	if (!Output.is_open()) {
@@ -159,6 +161,9 @@ void Game::StartWar()
 
 	dynamic_cast<EarthArmy*>(eartharmy)->modifyUML(timestep);
 	dynamic_cast<EarthArmy*>(eartharmy)->Heal(timestep);
+
+
+
 
 }
 

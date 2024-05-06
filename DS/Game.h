@@ -1,13 +1,8 @@
 #ifndef GAME_EA
 #define GAME_EA
-#include "Unit.h"
-#include "LinkedQueue.h"
 #include <fstream>
-#include "AlienArmy.h"
-#include"EarthArmy.h"
+#include "Army.h"
 #include "RandGenerator.h"
-
-class RandGenerator;
 
 class Game
 {
