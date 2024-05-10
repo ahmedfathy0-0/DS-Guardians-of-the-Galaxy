@@ -84,6 +84,12 @@
     <ClInclude Include="healUnit.h">
       <Filter>Units</Filter>
     </ClInclude>
+    <ClInclude Include="saverUnit.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="allyArmy.h">
+      <Filter>Armies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
@@ -121,6 +127,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="healUnit.cpp">
       <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="saverUnit.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="allyArmy.cpp">
+      <Filter>Armies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

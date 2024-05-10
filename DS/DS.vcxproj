@@ -131,6 +131,7 @@
     <ClInclude Include="AlienDrone.h" />
     <ClInclude Include="AlienMonster.h" />
     <ClInclude Include="AlienSoldier.h" />
+    <ClInclude Include="allyArmy.h" />
     <ClInclude Include="Army.h" />
     <ClInclude Include="ArrayOfPointer.h" />
     <ClInclude Include="ArrayStack.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="priQueue.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="RandGenerator.h" />
+    <ClInclude Include="saverUnit.h" />
     <ClInclude Include="StackADT.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>
@@ -157,6 +159,7 @@
     <ClCompile Include="AlienDrone.cpp" />
     <ClCompile Include="AlienMonster.cpp" />
     <ClCompile Include="AlienSoldier.cpp" />
+    <ClCompile Include="allyArmy.cpp" />
     <ClCompile Include="Army.cpp" />
     <ClCompile Include="EarthArmy.cpp" />
     <ClCompile Include="EarthGunnery.cpp" />
@@ -165,6 +168,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="healUnit.cpp" />
     <ClCompile Include="RandGenerator.cpp" />
+    <ClCompile Include="saverUnit.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
