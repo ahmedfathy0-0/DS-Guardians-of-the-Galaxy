@@ -21,7 +21,8 @@ void AlienSoldier::attack(LinkedQueue <Unit *>* SoldierTemp, int timestep , Game
 		EarthUnit->setHealth(EarthUnit->getHealth() - Damage);
 		if (EarthUnit->getHealth() <= 0)  // after attack i have to check is the soldier dead or not 
 		{
-
+			if(EarthUnit->getInfectionStatus())
+			   Unit::decrementInfectedCount();
 			pGame->AddToKilled(EarthUnit);
 		}
 		else {

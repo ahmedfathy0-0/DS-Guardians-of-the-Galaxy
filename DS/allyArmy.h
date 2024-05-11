@@ -1,8 +1,8 @@
-#pragma once
+#ifndef ALLY_ARMY_H 
+#define ALLY_ARMY_H
 #include "Army.h"
 
-class allyArmy :
-    public Army
+class allyArmy : public Army
 {
     LinkedQueue<Unit*> saverUnitsList;
     Unit* allyUnit;
@@ -11,12 +11,14 @@ class allyArmy :
 
 public:
     allyArmy(Game* pGame);
-    void attack(Army* enemy, int timestep);
+    bool attack(Army* enemy, int timestep);
+    void Withdrawal();
     void addUnit(Unit*);
     Unit* removeUnit(string type);
     int getSoldiersCount();
     void printArmy();
     void printFightingUnits();
-    void Armyfile(fstream&, int, int, int, int, int);
+    void Armyfile(fstream&, int, int, int, int, int,int);
 };
 
+#endif

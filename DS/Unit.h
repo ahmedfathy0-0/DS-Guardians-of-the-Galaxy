@@ -21,6 +21,12 @@ protected:
 	int attackCapacity; 
 	int UMLJoinTime; //time at which unit joins the UML
 	double originalHealth; // used for tanks and soldiers
+
+	// bonus realted
+	bool infected;
+	bool immune;
+	int healingCounter;
+
 public:
 
 	// Constructors and Destructors
@@ -69,6 +75,24 @@ public:
 	virtual void print(); //print the unit details
 
 	friend std::ostream& operator<<(std::ostream& os, const Unit* item);
+
+	// bonus related functions
+	static int infectedCount;
+	static int total_infected; //even if the soldier is dead, it is counted as infected
+
+	void setInfectionStatus(bool);
+	bool getInfectionStatus() const;
+	static void decrementInfectedCount();
+	static void incrementInfectedCount();
+	static int getInfectedCount();
+	static int getTotalInfected();
+
+	void setImmunityStatus(bool);
+	bool getImmunityStatus() const;
+
+	void setHealingCounter(int);
+	int getHealingCounter() const;
+
 };
 #endif
 

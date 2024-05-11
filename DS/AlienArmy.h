@@ -16,13 +16,13 @@ class AlienArmy : public Army
 	bool flag; //flag used in remove Unit to make it easy to remove drones
 public:
 	AlienArmy(Game* pGame);
-	void attack(Army* enemy, int timestep);
+	bool attack(Army* enemy, int timestep);
 	void addUnit(Unit*);
 	Unit* removeUnit(string type); // index for the monster list and the Unit pointer used if type is Drone
 	int getSoldiersCount(); // to get the number of soldiers 
 	void printArmy();
 	void printFightingUnits();
-	void Armyfile(fstream&, int, int, int, int, int);
+	void Armyfile(fstream&, int, int, int, int, int,int);
 };
 
 #endif

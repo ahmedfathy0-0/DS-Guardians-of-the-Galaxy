@@ -8,26 +8,36 @@ EarthSoldier::EarthSoldier(int id, int jointime, double health, double power, in
 void EarthSoldier::attack(LinkedQueue <Unit*>* SoldierTemp, int timestep, Game* pGame, Army* enemy)
 {
 	
-	Unit* AlienUnit;
+	Unit* AttackedUnit;
+	LinkedQueue<Unit*> EarthTemp; //used for if it attacks EarthSoldiers
 	int loopCount = SoldierTemp->getCount();
 
 	for (int i = 0; i < loopCount; i++) {
-		SoldierTemp->dequeue(AlienUnit);
+		SoldierTemp->dequeue(AttackedUnit);
+		if (!AttackedUnit) break;
+		AttackedUnit->setfatime(timestep);
 
-		if (!AlienUnit) break;
+		double Damage = (Power + Health / 100) / (pow(AttackedUnit->getHealth(), 0.5));
+		AttackedUnit->setHealth(AttackedUnit->getHealth() - Damage);
 
-		AlienUnit->setfatime(timestep);
-
-		double Damage = (Power + Health / 100) / (pow(AlienUnit->getHealth(), 0.5));
-		AlienUnit->setHealth(AlienUnit->getHealth() - Damage);
-
-		if (AlienUnit->getHealth() <= 0)  // after attack i have to check is the soldier dead or not 
+		if (AttackedUnit->getHealth() <= 0)  // after attack i have to check is the soldier dead or not 
 		{
-			pGame->AddToKilled(AlienUnit);
+			if (AttackedUnit->getType()=="ES" && AttackedUnit->getInfectionStatus()) {
+				Unit::decrementInfectedCount();
+			}
+			pGame->AddToKilled(AttackedUnit);
 		}
 		else {
-			enemy->addUnit(AlienUnit);
+			if (AttackedUnit->getType() == "ES") {
+				EarthTemp.enqueue(AttackedUnit);
+			}
+			else {
+				enemy->addUnit(AttackedUnit);
+			}
 		}
+	}
+	while (EarthTemp.dequeue(AttackedUnit)) {
+		SoldierTemp->enqueue(AttackedUnit);
 	}
 
 

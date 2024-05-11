@@ -6,7 +6,6 @@
 
 class EarthArmy : public Army
 {
-
 	LinkedQueue<Unit*> eSoldiersList;
 	ArrayStack<Unit*> eTanksList;
 	priQueue<Unit*> eGunneryList;
@@ -16,9 +15,11 @@ class EarthArmy : public Army
 	Unit* EarthUnit;
 	Unit* ES_Attack, * ET_Attack, * EG_Attack;
 	LinkedQueue<Unit*>* ES_attacking_list, * ET_attacking_list, * EG_attacking_list;
+	bool doneHealing;
 public:
 	EarthArmy(Game* pGame);
-	void attack(Army* enemy, int timestep);
+	bool attack(Army* enemy, int timestep);
+	void InfectionSpread();
 	void addUnit(Unit*) ;
 	Unit* removeUnit(string type) ;
 	int getSoldiersCount();
@@ -26,7 +27,8 @@ public:
 	void modifyUML(int timeStep);
 	void Heal(int timeStep);
 	void printFightingUnits();
-	void Armyfile(fstream&, int, int, int, int, int);
+	void Armyfile(fstream&, int, int, int, int, int,int);
 
+	double calcinfectedperc();
 };
 #endif

@@ -16,10 +16,11 @@ AlienArmy::AlienArmy(Game* pGame) : Army(pGame)
 	AD2_attacking_list = nullptr;
 }
 
-void AlienArmy::attack(Army* enemy, int timestep)
+bool AlienArmy::attack(Army* enemy, int timestep)
 {
 	Unit* EarthUnit;
 	Unit* AlienUnit;
+	bool F1 =true, F2 = true, F3 = true;
 	/* Pointers for printing the fighting units*/
 	AS_Attack = nullptr;
 	AM_Attack = nullptr;
@@ -43,6 +44,9 @@ void AlienArmy::attack(Army* enemy, int timestep)
 		}
 		AlienUnit->attack(&SoldierTemp, timestep, pGame, enemy);
 
+	}
+	else {
+				F1 = false;
 	}
 	/*Here Alien Monster Will attack both tanks and Earth Soldiers Depend on its attack capacity*/
 
@@ -79,6 +83,9 @@ void AlienArmy::attack(Army* enemy, int timestep)
 		AlienUnit->attack(&enemyTemp, timestep, pGame, enemy);
 		aMonstersList.AddElement(AlienUnit);
 
+	}
+	else {
+		F2 = false;
 	}
 
 	if (!aDronesList.isEmpty()) {
@@ -176,6 +183,10 @@ void AlienArmy::attack(Army* enemy, int timestep)
 		if (secAlienUnit)
 			aDronesList.enqueue(secAlienUnit);
 	}
+	else {
+		F3 = false;
+	}
+	return F1 || F2 || F3;
 }
 
 void AlienArmy::addUnit(Unit* AlienUnit)
@@ -252,21 +263,21 @@ void AlienArmy::printArmy()
 
 void AlienArmy::printFightingUnits()
 {
-	if (AS_Attack && !AS_attacking_list->isEmpty()) {
+	if (AS_Attack && AS_attacking_list && !AS_attacking_list->isEmpty()) {
 		std::cout << "AS " << AS_Attack->getID() << " Shots ";
 		AS_attacking_list->print();
 	}
 
-	if (AM_Attack && !AM_attacking_list->isEmpty()) {
+	if (AM_Attack && AM_attacking_list && !AM_attacking_list->isEmpty()) {
 		std::cout << "AM " << AM_Attack->getID() << " Shots ";
 		AM_attacking_list->print();
 	}
 
-	if (AD_Attack && !AD_attacking_list->isEmpty()) {
+	if (AD_Attack && AD_attacking_list && !AD_attacking_list->isEmpty()) {
 		std::cout << "AD " << AD_Attack->getID() << " Shots ";
 		AD_attacking_list->print();
 	}
-	if (AD2_Attack && !AD2_attacking_list->isEmpty()) {
+	if (AD2_Attack && AD2_attacking_list && !AD2_attacking_list->isEmpty()) {
 		std::cout << "AD " << AD2_Attack->getID() << " Shots ";
 		AD2_attacking_list->print();
 	}
@@ -283,14 +294,19 @@ void AlienArmy::printFightingUnits()
 
 }
 
-void AlienArmy::Armyfile(fstream& Output, int AS_dead, int AM_dead, int AD_dead, int Df, int Dd)
+void AlienArmy::Armyfile(fstream& Output, int Df, int Dd, int AS_dead, int AM_dead, int AD_dead, int X_dead)
 {
 	Output << std::fixed << std::setprecision(2);
 	Output << aSoldiersList.getCount() << " AS " << "  " << aMonstersList.getCount() << " AM " << "  " << aDronesList.getCount() << " AD" << endl;
 	Output << endl;
-	Output << (double(AS_dead) / (aSoldiersList.getCount() + AS_dead)) * 100 << " %(Dead_AS) " << (double(AM_dead) / (aMonstersList.getCount() + AM_dead)) * 100 << " %(Dead_AM) " << (double(AD_dead) / (aDronesList.getCount() + AD_dead)) * 100 << " %(Dead_AD)" << endl;
+	Output <<( ((aSoldiersList.getCount() + AS_dead)!=0)? (double(AS_dead) / (aSoldiersList.getCount() + AS_dead)) * 100 : 0)<< " %(Dead_AS) "
+		   <<( ((aMonstersList.getCount() + AM_dead)!=0)? (double(AM_dead) / (aMonstersList.getCount() + AM_dead)) * 100 : 0)<< " %(Dead_AM) "
+	       <<( ((aDronesList.getCount() + AD_dead)!=0)? (double(AD_dead) / (aDronesList.getCount() + AD_dead)) * 100 : 0 )<< " %(Dead_AD)" << endl;
+
+
 	Output << endl;
-	Output << (double(AS_dead + AM_dead + AD_dead) / (aSoldiersList.getCount() + aMonstersList.getCount() + aDronesList.getCount() + AS_dead + AM_dead + AD_dead)) * 100 << " %(Dead_AlienUnits)" << endl;
+	Output << (((aSoldiersList.getCount() + aMonstersList.getCount() + aDronesList.getCount() + AS_dead + AM_dead + AD_dead) != 0)?
+		(double(AS_dead + AM_dead + AD_dead) / (aSoldiersList.getCount() + aMonstersList.getCount() + aDronesList.getCount() + AS_dead + AM_dead + AD_dead)) * 100 : 0 ) << " %(Dead_AlienUnits)" << endl;
 	Output << endl;
 	int sum = AS_dead + AM_dead + AD_dead;
 	if (sum != 0) {
@@ -302,8 +318,14 @@ void AlienArmy::Armyfile(fstream& Output, int AS_dead, int AM_dead, int AD_dead,
 		Output << "average of Dd = " << Dd_avg << endl;
 		Output << "average of Db = " << Db_avg << endl;
 		Output << endl;
-		Output << "Df/Db % = " << (double(Df_avg) / Db_avg) * 100 << endl;
-		Output << "Dd/Db % = " << (double(Dd_avg) / Db_avg) * 100 << endl;
+		if (Db_avg != 0) {
+			Output << "Df/Db % = " << (double(Df_avg) / Db_avg) * 100 << endl;
+			Output << "Dd/Db % = " << (double(Dd_avg) / Db_avg) * 100 << endl;
+		}
+		else {
+			Output << "Df/Db % = 0" << endl;
+			Output << "Dd/Db % = 0" << endl;
+		}
 	}
 	else {
 		Output << "average of Df = 0 %" << endl;
