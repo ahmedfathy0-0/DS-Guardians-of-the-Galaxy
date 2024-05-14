@@ -78,10 +78,16 @@ void allyArmy::printArmy()
 {
 	if (saverUnitsList.getCount() != 0) {
 
-		std::cout << "====================== Ally Army Alive Units ====================== " << endl;
+		std::cout << endl;
+		std::cout << "\033[48;2;255;165;0m============================================ \033[0m" << endl;
+		std::cout << "\033[48;2;255;165;0m==========\033[0m \033[38;2;255;165;0mAlly Army Alive Units\033[0m \033[48;2;255;165;0m=========== \033[0m" << endl;
+		std::cout << "\033[48;2;255;165;0m============================================ \033[0m" << endl;
+		std::cout << endl;
+		std::cout << "\033[38;2;255;165;0m";
 		std::cout << saverUnitsList.getCount() << " SU ";
 		saverUnitsList.print();
 		std::cout << endl;
+		std::cout << "\033[0m";
 	}
 }
 

@@ -248,8 +248,12 @@ int AlienArmy::getSoldiersCount()
 
 void AlienArmy::printArmy()
 {
-	std::cout << "====================== Alien Army Alive Units ====================== " << endl;
-	std::cout << aSoldiersList.getCount() << " AS ";
+	std::cout << endl;
+	std::cout << "\033[9;45m============================================ \033[0m" << endl;
+	std::cout << "\033[9;45m==========\033[0m \033[1;35mAlien Army Alive Units\033[0m \033[9;45m========== \033[0m" << endl;
+	std::cout << "\033[9;45m============================================ \033[0m" << endl;
+	std::cout << "\033[1;35m";
+	std::cout << endl;	std::cout << aSoldiersList.getCount() << " AS ";
 	aSoldiersList.print();
 	std::cout << aMonstersList.getCount() << " AM ";
 	aMonstersList.print();
@@ -257,6 +261,7 @@ void AlienArmy::printArmy()
 	aDronesList.print();
 
 	std::cout << endl;
+	std::cout << "\033[0m";
 
 
 }

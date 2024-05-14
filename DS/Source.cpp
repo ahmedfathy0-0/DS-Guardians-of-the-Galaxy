@@ -9,6 +9,8 @@
 #include "Unit.h"
 //#include"Army.h"
 #include"Game.h"
+#include <locale>
+#include <codecvt>
 //#include"AlienArmy.h"
 //#include"EarthArmy.h"
 ostream& operator<<(ostream& os, const Unit* item) {
@@ -35,7 +37,7 @@ int main() {
 	// Create a game object
 	Game* pGame = new Game(InputFile);
 	bool flag = true;
-	cout << "do you need Silent Mode? (y/n)" << endl;
+	cout << "\033[1;45mdo you need Silent Mode? (y/n)\033[0m" << endl;
 	cin >> mode;
 	system("CLS");
 	if (mode == "y") {
@@ -58,6 +60,7 @@ int main() {
 			if(flag)
 			  pGame->print();
 			cout << "Press 'q' to quit or any other key to continue: ";
+			
 			//cin >> key;
 			if (key == "q") {
 				break;

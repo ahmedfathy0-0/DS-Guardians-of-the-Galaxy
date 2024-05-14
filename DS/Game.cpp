@@ -37,6 +37,7 @@ Game::Game()
 		E_Df = 0;
 		Ay_Dd = 0;
 		Ay_Df = 0;
+		SU_help = false;
 
 
 
@@ -80,6 +81,7 @@ Game::Game(fstream& input)
 	E_Df = 0;
 	Ay_Dd = 0;
 	Ay_Df = 0;
+	SU_help = false;
 }
 
 void Game::AddToKilled(Unit* Dead)
@@ -179,8 +181,9 @@ void Game::GenerateArmy()
 	pRandGen->GenerateArmy("Earth",timestep);
 	pRandGen->GenerateArmy("Alien", timestep);
 
-	if (dynamic_cast<EarthArmy*>(eartharmy)->calcinfectedperc() >= infectionthreshold) {
+	if (dynamic_cast<EarthArmy*>(eartharmy)->calcinfectedperc() >= infectionthreshold || SU_help) {
 		pRandGen->GenerateArmy("Ally", timestep);
+		SU_help = true;
 	}
 }
 
@@ -200,15 +203,31 @@ void Game::print()
 
 	eartharmy->printArmy();
 	alienarmy->printArmy();
-	allyarmy->printArmy();
-	std::cout << "====================== Units Fighting at current step ===================== " << endl;
+	allyarmy->printArmy();	
+
+	std::cout << endl;
+	std::cout << "\033[46m============================================ \033[0m" << endl;
+	std::cout << "\033[46m======\033[0m \033[36mUnits Fighting at current step\033[0m \033[46m====== \033[0m" << endl;
+	std::cout << "\033[46m============================================ \033[0m" << endl;
+	std::cout << endl;
+	std::cout << "\033[1;32m";
 	eartharmy->printFightingUnits();
+	std::cout << "\033[0m";
+	std::cout << "\033[1;35m";
 	alienarmy->printFightingUnits();
+	std::cout << "\033[0m";
+	std::cout << "\033[38;2;255;165;0m";
 	allyarmy->printFightingUnits();
-	std::cout << "====================== Killed / Destructed Units ===================== " << endl;
+	std::cout << "\033[0m";
+	std::cout << endl;
+	std::cout << "\033[48;2;169;169;169m=============================================== \033[0m" << endl;
+	std::cout << "\033[48;2;169;169;169m==========\033[0m \033[38;2;169;169;169mKilled / Destructed Units\033[0m \033[48;2;169;169;169m========== \033[0m" << endl;
+	std::cout << "\033[48;2;169;169;169m=============================================== \033[0m" << endl;
+	std::cout << endl;
+	std::cout << "\033[38;2;169;169;169m";
 	std::cout << KilledList.getCount() <<" ";
 	KilledList.print();
-
+	std::cout << "\033[0m";
 
 	cout << endl;
 
@@ -219,10 +238,16 @@ bool Game::StartWar()
 
 	bool F1 = eartharmy->attack(alienarmy,timestep);
 	bool F2 = alienarmy->attack(eartharmy,timestep);
+
+	if (dynamic_cast<EarthArmy*>(eartharmy)->calcinfectedperc() == 0) {
+		dynamic_cast<allyArmy*>(allyarmy)->Withdrawal();
+		SU_help = false;
+	}
 	allyarmy->attack(alienarmy,timestep);
 	if (timestep >= 40 && F1 && !F2) {
 		cout << endl;
 		cout << endl;
+		cout << "\033[1;32m";
 		cout <<R"(
 
 			 _____           _   _       _____                     _ 
@@ -234,11 +259,13 @@ bool Game::StartWar()
                                                          
                                                          
 			 )" << endl;
+		cout << "\033[0m";
 		return false;
 	}
 	else if (timestep >= 40 && !F1 && F2) {
 		cout << endl;
 		cout << endl;
+		cout << "\033[1;35m";
 		cout << R"(
 
 			  ___  _ _              _    _ _                                            
@@ -258,12 +285,17 @@ bool Game::StartWar()
 																		__/ |           
 																	   |___/            
 
-                                                                                              )" << endl;
+                                                                                              
+
+
+)" << endl;
+		cout << "\033[0m";
 		return false;
 	}
 	else if (timestep >= 40 && !F1 && !F2) {
 		cout << endl;
 		cout << endl;
+		cout << "\033[1;36m";
 		cout << R"(
 			  ____                     _ _ 
 			 |  _ \ _ __ __ ___      _| | |
@@ -272,6 +304,7 @@ bool Game::StartWar()
 			 |____/|_|  \__,_| \_/\_/ (_|_)
                                  
 			)" << endl;
+		cout << "\033[0m";
 		return false;
 	}
 
@@ -279,9 +312,6 @@ bool Game::StartWar()
 	dynamic_cast<EarthArmy*>(eartharmy)->Heal(timestep);
 	dynamic_cast<EarthArmy*>(eartharmy)->InfectionSpread();
 
-	if (dynamic_cast<EarthArmy*>(eartharmy)->calcinfectedperc() == 0) {
-		dynamic_cast<allyArmy*>(allyarmy)->Withdrawal();
-	}
 	return true;
 
 }

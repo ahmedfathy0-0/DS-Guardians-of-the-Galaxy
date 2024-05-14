@@ -293,7 +293,12 @@ int EarthArmy::getSoldiersCount()
 
 void EarthArmy::printArmy()
 {
-	std::cout << "====================== Earth Army Alive Units ====================== " << endl;
+	std::cout << endl;
+	std::cout << "\033[9;42m============================================ \033[0m" << endl;
+	std::cout << "\033[9;42m==========\033[0m \033[1;32mEarth Army Alive Units\033[0m \033[9;42m========== \033[0m" << endl;
+	std::cout << "\033[9;42m============================================ \033[0m" << endl;
+	std::cout << endl;
+	std::cout << "\033[1;32m";
 	if(eSoldiersList.getCount() > 0)
 	std::cout << eSoldiersList.getCount() << " ES "<<" Infected % : "<< std::setprecision(4) << calcinfectedperc() << " ";
 	else 
@@ -306,12 +311,19 @@ void EarthArmy::printArmy()
 	std::cout << healList.getCount() << " HU ";
 	healList.print();
 	std::cout << endl;
-	std::cout << "======================  Unit Maintenance Lists ====================== " << endl;
+	std::cout << "\033[0m";
+	std::cout << endl;
+	std::cout << "\033[9;41m================================== \033[0m" << endl;
+	std::cout << "\033[9;41m=====\033[0m \033[1;31mUnit Maintenance Lists\033[0m \033[9;41m===== \033[0m" << endl;
+	std::cout << "\033[9;41m================================== \033[0m" << endl;
+	std::cout << endl;
+	std::cout << "\033[1;31m";
 	std::cout << soldiersUML.getCount() << " ES ";
 	soldiersUML.print();
 	std::cout << tankUML.getCount() << " ET ";
 	tankUML.print();
 	std::cout << endl;
+	std::cout << "\033[0m";
 
 
 

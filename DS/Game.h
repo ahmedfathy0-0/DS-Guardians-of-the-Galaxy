@@ -22,6 +22,7 @@ class Game
 
 	int infectionProb;
 	int infectionthreshold;
+	bool SU_help;// to check if the ally army is helping the earth army
 
 public:
 	Game();
