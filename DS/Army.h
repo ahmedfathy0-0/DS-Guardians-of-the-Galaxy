@@ -19,23 +19,32 @@ protected:
 
 public:
 
-	// Constructor and Destructor
+	// Constructor 
 	Army(Game*);
-	~Army() {}
-
 
 	// Battle related functions
 
-	virtual bool attack(Army* enemy,int timestep) = 0;
+	virtual bool attack(Army* enemy,int timestep,bool &,bool &) = 0;
+
+
+	// list controlling functions
 	virtual void addUnit(Unit*) = 0;
 	virtual Unit* removeUnit(string) = 0;
+
+	// Getters
 	virtual int getSoldiersCount() = 0;
 
-	//other functions
-		
+
+	// printing functions		
 	virtual void printArmy() = 0;
 	virtual void printFightingUnits() = 0;
+
+	// outFile functions
 	virtual void Armyfile(fstream&,int,int,int,int,int,int x) = 0;
+
+
+	// Destructor
+	virtual ~Army();
 
 };
 

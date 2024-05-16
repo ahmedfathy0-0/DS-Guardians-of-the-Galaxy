@@ -7,12 +7,14 @@
 #include"DoubleEndedQueue.h"
 #include<fstream>
 #include "Unit.h"
-//#include"Army.h"
 #include"Game.h"
-#include <locale>
-#include <codecvt>
-//#include"AlienArmy.h"
-//#include"EarthArmy.h"
+#include <Windows.h>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+using namespace std;
+
+
 ostream& operator<<(ostream& os, const Unit* item) {
 	os << item->getID();  // Print the ID of the unit
 	if (item->getType() == "ES") {
@@ -21,64 +23,61 @@ ostream& operator<<(ostream& os, const Unit* item) {
 	}
 	return os;
 }
-using namespace std;
 
 int main() {
 
-	string key;
-	string mode;
-	// Open the input file
-	fstream InputFile;
-	InputFile.open("Test.txt");
-	if (!InputFile.is_open()) {
-		cerr << "Error: Could not open file 'Test.txt'." << endl;
-		return 1; // Exit program on error
-	}
-	// Create a game object
-	Game* pGame = new Game(InputFile);
-	bool flag = true;
-	cout << "\033[1;45mdo you need Silent Mode? (y/n)\033[0m" << endl;
-	cin >> mode;
-	system("CLS");
-	if (mode == "y") {
-		cout << "Silent Mode is on" << endl;
-		cout <<"Simulation Starts Now"<<endl;
-	}
+	string restart = "y";
+	
+	while (restart == "y") {
+		
+		// Create a game object
+		Game* pGame = new Game();
 
+		cout << endl;
+		cout << endl;
+		cout << "\033[1;38;5;12m";
+		      cout << R"(
 
-	while (flag){
-		if (InputFile.is_open()) {
-			srand(time(0));
-			pGame->GenerateArmy();
-        }
-		if (mode == "n") {
-			cout << "before start the next timestep" << endl;
-			pGame->print();
-			// Start the war
-			flag = pGame->StartWar();
-			cout << "after start the next timestep" << endl;
-			if(flag)
-			  pGame->print();
-			cout << "Press 'q' to quit or any other key to continue: ";
-			
-			//cin >> key;
-			if (key == "q") {
-				break;
-			}
-			if(flag)
-			  system("CLS");
+				   ______                         __ _                         
+				  / ____/__  __ ____ _ _____ ____/ /(_)____ _ ____   _____     
+				 / / __ / / / // __ `// ___// __  // // __ `// __ \ / ___/     
+				/ /_/ // /_/ // /_/ // /   / /_/ // // /_/ // / / /(__  )      
+				\____/ \______\__,_//_/    \__,_//_/ \__,_//_/ /_//____/       
+				  ____   / __/                                                 
+				 / __ \ / /_                                                   
+				/ /_/ // __/                                                   
+				\_______/__             ______        __                       
+				 /_  __// /_   ___     / ____/____ _ / /____ _ _  __ __  __    
+				  / /  / __ \ / _ \   / / __ / __ `// // __ `/| |/_// / / /    
+				 / /  / / / //  __/  / /_/ // /_/ // // /_/ /_>  < / /_/ /     
+				/_/  /_/ /_/ \___/   \____/ \__,_//_/ \__,_//_/|_| \__, /      
+										  /____/       
+                                                                                                                    
+
+							   
+
+		)" << endl;
+	
+		cout << "\033[0m";
+
+		//leep(2000);
+
+		pGame->StartGame();
+
+		// Deallocate memory 
+		delete pGame;
+
+		cout << "\n\n";
+		
+		cout << "Do you want to play again? (y/n)" << endl;
+		cin >> restart;
+		while (restart != "y" && restart != "n") {
+			cout << "Please enter y or n: ";
+			cin >> restart;
 		}
-		else {
-			flag = pGame->StartWar();
-		}
+		system("CLS");
 	}
-	if(mode == "y")
-		cout << "Simulation Ends , Output file is created" << endl;
-
-	// Deallocate memory 
-	delete pGame;
-
-	// Close the input file
-	InputFile.close();
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+	_CrtDumpMemoryLeaks();
 
 }

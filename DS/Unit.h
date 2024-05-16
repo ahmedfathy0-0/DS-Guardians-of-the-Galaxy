@@ -8,19 +8,27 @@ using namespace std;
 
 class Game;
 class Army;
-class Unit
-{
+class Unit {
+
 protected:
-	int ID; //unique identifier for each unit
-	string Type; //type of unit
-	int joinTime; //time at which unit joins the battle
-	int fAtime;   // First Attack time
-	int DEStime;  //Destruction time 
+
+	// Data Members
+	int ID;
+	string Type; 
 	double Health;
 	double Power; 
 	int attackCapacity; 
-	int UMLJoinTime; //time at which unit joins the UML
-	double originalHealth; // used for tanks and soldiers
+
+	// Battle Related Data Members
+
+	int joinTime; //time at which unit joins the battle
+	int fAtime;   // First Attack time
+	int DEStime;  //Destruction time 
+
+	// Heal-Unit Related functions
+	int UMLJoinTime; 
+	double originalHealth; 
+
 
 	// bonus realted
 	bool infected;
@@ -82,8 +90,10 @@ public:
 
 	void setInfectionStatus(bool);
 	bool getInfectionStatus() const;
+
 	static void decrementInfectedCount();
 	static void incrementInfectedCount();
+	
 	static int getInfectedCount();
 	static int getTotalInfected();
 

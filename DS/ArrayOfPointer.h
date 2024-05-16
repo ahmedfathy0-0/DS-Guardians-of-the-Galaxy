@@ -30,6 +30,7 @@ public:
 	}  // end AddElement
 	bool Remove(T& TopEntry)
 	{
+
 		int index = rand() % (count);
 
 		if (isEmpty()) return false;

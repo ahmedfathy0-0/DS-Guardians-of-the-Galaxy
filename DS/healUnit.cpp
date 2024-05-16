@@ -23,6 +23,7 @@ void healUnit::attack(LinkedQueue <Unit*>* needHealingList, int timeStep, Game* 
 
 		else {
 			heal(unitToHeal);
+
 			doneHealing = true;
 
 			if (unitToHeal->getHealth() > 0.2 * unitToHeal->getOriginalHealth()) { // if the unit is healed
@@ -45,7 +46,9 @@ void healUnit::attack(LinkedQueue <Unit*>* needHealingList, int timeStep, Game* 
 
 	if (doneHealing) {
 		this->fAtime = timeStep;
+		earthArmy->removeUnit("HU");
 		pGame->AddToKilled(this);
+		doneHealing = false;
 	}
 }
 

@@ -4,21 +4,41 @@
 
 class allyArmy : public Army
 {
+    // Lists 
     LinkedQueue<Unit*> saverUnitsList;
-    Unit* allyUnit;
-    Unit* SU_attack;
     LinkedQueue<Unit*>* SU_attacking_list;
 
+
+    // Unit-Pointers
+    Unit* allyUnit;
+    Unit* SU_attack;
+
 public:
+
+    // constructor 
     allyArmy(Game* pGame);
-    bool attack(Army* enemy, int timestep);
+
+    // battle related functions
+    bool attack(Army* enemy, int timestep, bool& , bool& );
     void Withdrawal();
-    void addUnit(Unit*);
+
+    // list controlling functions
     Unit* removeUnit(string type);
+    void addUnit(Unit*);
+
+    // getters
     int getSoldiersCount();
+    LinkedQueue<Unit*>* getsaverUnitsList();
+
+    // print functions
     void printArmy();
     void printFightingUnits();
+
+    // outFile functions
     void Armyfile(fstream&, int, int, int, int, int,int);
+
+    // destructor
+    ~allyArmy();
 };
 
 #endif

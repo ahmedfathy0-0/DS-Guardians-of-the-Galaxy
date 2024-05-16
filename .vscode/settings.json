@@ -61,5 +61,6 @@
     "codecvt": "cpp",
     "iostream": "cpp",
     "ostream": "cpp"
-  }
+  },
+  "cmake.sourceDirectory": "${workspaceFolder}/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/ProjectTemplates/VC/Cross Platform/CMake/CMakeProject/ProjectName"
 }
